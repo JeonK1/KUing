@@ -1,0 +1,17 @@
+.building_container{
+    width: 161px;
+    height: 161px;
+}
+.building_desc{
+    position: relative;
+    top: -75%;
+    text-align: center;
+}
+.building_num{
+    color: #34F0A2;
+    font-size: 35px;
+    font-weight: bold;
+}
+.building_name{
+    font-size: 15px;
+}

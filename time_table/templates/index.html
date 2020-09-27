@@ -1,10 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <div class="building_container">
+        <img src="{% static 'img/building_circle.png' %}">
+        <div class="building_desc">
+            <span class="building_num">01</span>
+            <br>
+            <span class="building_name">행정관</span>
+        </div>
+    </div>
+    {% for lecture in lectures %}
+    <div>
+        {{lecture.title}}
+    </div>
+    {% endfor %}
+{% endblock %}
