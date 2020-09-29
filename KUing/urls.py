@@ -15,11 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from time_table.views import init, delete, index
+from time_table.views import init, delete, index, login
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index),
     path('init/', init),
     path('delete/', delete),
+    path('login/', login)
 ]

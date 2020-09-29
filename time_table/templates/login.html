@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <div class="building_container">
+        <div class="kuing_div">
+            <img src="{% static 'img/kuing_mark.png' %}"><br>
+            <img src="{% static 'img/kuing_word.png' %}"><br>
+            <span class="kuing_subtitle">건국대학교 잉여 강의실 찾기 서비스</span>
+        </div>
+        <div class="login_wrapper">
+            <form>
+                <input type="text" class="input_box_id" placeholder="아이디"/><br>
+                <input type="password" class="input_box_id" placeholder="비밀번호"/><br>
+                <input type="button" class="btn_login"value="LOG IN" onclick="location.href='http://localhost:8000'" />
+            </form>
+        </div>
+        <div class="comment_wrapper">
+            <span class="sub_comment">별도의 회원가입 절차가 없으며,</span><br>
+            <span class="sub_comment">건국대학교 홈페이지 아이디/비밀번호와 동일합니다.</span>
+        </div>
+{% endblock %}
