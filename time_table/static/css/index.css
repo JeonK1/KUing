@@ -1,11 +1,47 @@
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+input:focus{
+    outline:none;
+}
+input::placeholder {
+    color: #ACC1B9;
+    font-family: 'Nanum Gothic Bold';
+    font-size: 12px;
+}
+
+.header_wrapper{
+    position:static;
+    background:black;
+    width:100%;
+}
+.ic_kuing{
+    position:absolute;
+    left:0;
+    margin: 10px 0px 0px 30px;
+}
+.ic_mypage{
+    position:absolute;
+    right:0;
+    margin: 10px 30px 0px 0px;
+    padding:5px;
+    border-radius: 20px;
+    background:#34F0A2;
+}
 .building_container{
-    width: 161px;
-    height: 161px;
+    position:relative;
+    top:100px;
+}
+.class_grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 .building_desc{
-    position: relative;
-    top: -75%;
-    text-align: center;
+    position:static;
+    padding: 35px 0px 40px 0px;
+    margin-bottom: 30px;
+    text-align:center;
+    background-image: url("http://localhost:8000/static/img/building_circle.png");
+    background-repeat: no-repeat;
+    background-position: center;
 }
 .building_num{
     color: #34F0A2;

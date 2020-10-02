@@ -1,10 +1,15 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>KUing</title>
 </head>
 <body>
+    <div class="header_wrapper">
+            <img class='ic_kuing' src="{% static 'img/ic_kuing.png' %}">
+            <img class='ic_mypage' src="{% static 'img/ic_mypage.png' %}">
+    </div>
     <div class="container">
         {% block content %}
         {% endblock %}

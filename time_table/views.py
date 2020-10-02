@@ -17,11 +17,10 @@ def delete(request):
     Lecture.objects.all().delete()
     return render(request, 'index.html')
 
+
 def login(request):
     return render(request, 'login.html')
 
-def main(request):
-    return render(request, 'main.html')
 
 def init_db():
     data = pd.read_excel("종합강의시간표내역.xlsx")[["교과목명", "강의요시/강의실", "담당교수"]].astype(str)
