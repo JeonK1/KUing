@@ -23,7 +23,6 @@ BUILDINGS = [
     # ('공예관', '공예'),
 ]
 
-
 class Lecture(models.Model):
     title = models.CharField(max_length=30)
     professor = models.CharField(max_length=15)

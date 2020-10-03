@@ -5,31 +5,13 @@
     <div class="building_container">
         <div class="class_grid">
             <!-- TODO : 1 ~ 24 까지의 건물 data 어디서 받아오는지 체크하고, 바로 적용하기 -->
-            <div class="building_desc">
-                <span class="building_num">01</span>
-                <br>
-                <span class="building_name">행정관</span>
-            </div>
-            <div class="building_desc">
-                <span class="building_num">01</span>
-                <br>
-                <span class="building_name">행정관</span>
-            </div>
-            <div class="building_desc">
-                <span class="building_num">01</span>
-                <br>
-                <span class="building_name">행정관</span>
-            </div>
-            <div class="building_desc">
-                <span class="building_num">01</span>
-                <br>
-                <span class="building_name">행정관</span>
-            </div>
-            <div class="building_desc">
-                <span class="building_num">01</span>
-                <br>
-                <span class="building_name">행정관</span>
-            </div>
+            {% for building in buildings %}
+                <div class="building_desc">
+                    <span class="building_num">{{building.number}}</span>
+                    <br>
+                    <span class="building_name">{{building.name}}</span>
+                </div>
+            {% endfor %}
         </div>
     </div>
 {% endblock %}

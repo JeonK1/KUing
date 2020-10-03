@@ -1,11 +1,14 @@
 from django.shortcuts import render
-from .models import Lecture, LectureTime
+from .models import Lecture, LectureTime, BUILDINGS
 import pandas as pd
 from time import sleep
 
 
 def index(request):
-    return render(request, 'index.html', {"lectures": Lecture.objects.all()})
+    buildingList = []
+    for i in range(len(BUILDINGS)):
+        buildingList.append({"number":'%02d' % (i+1), "name": BUILDINGS[i][0]})
+    return render(request, 'index.html', {"buildings": buildingList})
 
 
 def init(request):
