@@ -1,13 +1,23 @@
 from django.shortcuts import render
-from .models import Lecture, LectureTime, BUILDINGS
-import pandas as pd
+from django.views.generic import ListView
+from django.views.generic.detail import DetailView
+from .models import Lecture, LectureTime
 from time import sleep
+import pandas as pd
+
+# url의 인자로 들어오는 각 건물의 index값에 대한 건물 이름을 저장한 리스트 (0번째는 편의상 채워넣음)
+# 0 인덱스로 접근시 풀네임, 1 인덱스로 접근시 축악어 - DB에는 축약어로 저장되어 있음에 유의
+BUILDINGS = [
+    ('null', 'null'), ('상허연구관', '상허관'), ('종합강의동', '종강'), ('경영관', '경영'), ('산학협동관', '산학'),
+    ('신공학관', '신공'), ('생명과학관', '생'), ('동물생명과학관', '동'), ('새천년관', '새'), ('의생명과학연구관', '수'),
+    ('교육과학관', '사'), ('예술문화관', '예'), ('해봉부동산학관', '부'), ('건축관', '건'), ('인문학관', '문'),
+    ('창의관', '창'), ('과학관', '이'), ('공학관 A', '공A'), ('공학관 B', '공B'), ('공학관 C', '공C')]
 
 
 def index(request):
     buildingList = []
-    for i in range(len(BUILDINGS)):
-        buildingList.append({"number":'%02d' % (i+1), "name": BUILDINGS[i][0]})
+    for i in range(1, len(BUILDINGS)):
+        buildingList.append({"number": '%02d' % i, "name": BUILDINGS[i][0]})
     return render(request, 'index.html', {"buildings": buildingList})
 
 
@@ -23,6 +33,29 @@ def delete(request):
 
 def login(request):
     return render(request, 'login.html')
+
+
+class RoomList(ListView):
+    template_name = "room_list.html"
+    model = Lecture
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # self.kwargs['building_index']를 통해서 url에서 building_index값을 받을 수 있습니다.
+        building_index = self.kwargs['building_index']
+        lectures_in_building = Lecture.objects.filter(building=BUILDINGS[building_index][1])
+        floors = []
+        for lec in lectures_in_building:
+            tmp_floor = lec.lecture_times.get().floor
+            if floors.__contains__(tmp_floor): # 중복검사
+                continue
+            else:
+                floors.append(tmp_floor)
+        context['building_index'] = building_index
+        context['building_name'] = BUILDINGS[building_index][0]
+        context['lectures_in_building'] = lectures_in_building
+        context['floors'] = floors
+        return context
 
 
 def init_db():

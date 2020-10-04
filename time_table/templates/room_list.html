@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <link rel="stylesheet" href="{% static 'css/room_list.css' %}">
+    <div>
+        <div class="header">
+            {{ building_index }}
+            {{ building_name }}
+<!--            {% for lec in lectures_in_building %}-->
+<!--                <div>{{ lec.title }}</div>-->
+<!--            {% endfor %}-->
+        </div>
+        <div class="menu_bar">
+            <div class="menu_item">전체강의실</div>
+            <div class="menu_item">사용중</div>
+            <div class="menu_item">빈강의실</div>
+        </div>
+        <div class="contents">
+            {% for floor in floors %}
+                <div class="room_container">
+                    <div class="room_item">{{ floor }} 호</div>
+                    <div class="room_item">n분뒤 수업</div>
+                    <div class="room_item">빈강의실</div>
+                </div>
+            {% endfor %}
+
+        </div>
+    </div>
+{% endblock %}
+
