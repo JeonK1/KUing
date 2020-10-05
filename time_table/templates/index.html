@@ -4,9 +4,8 @@
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
     <div class="building_container">
         <div class="class_grid">
-            <!-- TODO : 1 ~ 24 까지의 건물 data 어디서 받아오는지 체크하고, 바로 적용하기 -->
             {% for building in buildings %}
-                <div class="building_desc">
+                <div class="building_desc" onclick="location.href='{{request.get_full_path}}room_list/{{building.number}}'">
                     <span class="building_num">{{building.number}}</span>
                     <br>
                     <span class="building_name">{{building.name}}</span>
