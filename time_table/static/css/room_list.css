@@ -45,7 +45,7 @@
 }
 .menu_bar{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1.1fr 1fr 1fr;
 }
 .menu_item{
     float: left;
@@ -74,8 +74,11 @@
     position:static;
     display: grid;
     grid-template-columns: 0.7fr 1.3fr 1fr;
+    border: 2px solid #f0f0f0;
+    border-radius: 50px;
     text-align: center;
-    margin-top : 20px;
+    margin-top : 5px;
+    padding: 10px 0px 10px 5px;
 }
 .room_item_name{
     font-size: 16px;
@@ -92,6 +95,6 @@
     color: #ffffff;
     background: #34F0A2;
     border-radius: 20px;
-    margin:0px 15px 0px 15px;
+    margin:0px 10px 0px 10px;
     padding:7px 0px 7px 0px;
 }

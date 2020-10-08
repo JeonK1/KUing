@@ -1,0 +1,122 @@
+.header_wrapper{
+    position:static;
+    background:black;
+    width:100%;
+}
+.ic_kuing{
+    position:absolute;
+    left:0;
+    margin: 10px 0px 0px 30px;
+}
+.ic_mypage{
+    position:absolute;
+    right:0;
+    margin: 10px 30px 0px 0px;
+    padding:5px;
+    border-radius: 20px;
+    background:#34F0A2;
+}
+.container{
+    position:static;
+    padding: 40px 10px 0px 10px;
+}
+.header{
+    position:static;
+    padding-bottom: 30px
+}
+.header_title{
+    position:absolute;
+    left:0;
+    padding-left: 30px;
+    font-size: 26px;
+    font-weight: bold;
+}
+.option_body{
+    position:static;
+    width: 98%;
+    margin-top : 70px;
+    padding : 50px 0px 60px 0px;
+    border:5px solid #34F0A2;
+    border-radius: 60px;
+}
+.option_menu{
+    position:static;
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 1fr;
+    margin-right: 10px;
+
+}
+.option_title{
+    padding: 3px 0px 3px 0px;
+    margin-left: 20px;
+    margin-right: 15px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+.btn_gray{
+    padding: 3px 10px 3px 10px;
+    margin-right : 10px;
+    border-radius: 20px;
+    background:#ACC1B9;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffffff;
+
+}
+.btn_light_green{
+    display:inline-block;
+    padding: 3px 20px 3px 20px;
+    margin-left : 5px;
+    margin-right : 15px;
+    border-radius: 20px;
+    background:#34F0A2;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffffff;
+}
+.option_title2{
+    padding: 3px 0px 3px 0px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    margin-right: 15px;
+    margin-top: 15px;
+    font-size: 20px;
+    font-weight: bold;
+}
+.option_day_of_week_container{
+    position:static;
+    display: grid;
+    padding-left:10px;
+    padding-right:10px;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+.option_day_of_week{
+    padding : 3px 10px 3px 10px;
+    margin-left: 10px;
+    margin-right: 5px;
+    background:white;
+    border:3px solid #ffffff;
+    border-radius: 15px;
+    box-shadow: 1px 1px 7px 0.1px #dddddd;
+    text-align: center;
+}
+.option_floor_container{
+    position:static;
+    display: grid;
+    padding-left:10px;
+    padding-right:10px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.option_floor{
+    padding : 3px 10px 3px 10px;
+    margin-left: 10px;
+    margin-right: 5px;
+    background:white;
+    border:3px solid #ffffff;
+    border-radius: 15px;
+    box-shadow: 1px 1px 7px 0.1px #dddddd;
+    text-align: center;
+}

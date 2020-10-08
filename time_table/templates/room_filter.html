@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <link rel="stylesheet" href="{% static 'css/room_filter.css' %}">
+    <div class="container">
+        <div class="header">
+            <div class="header_title">
+                {{ building_index | stringformat:"02d" }}
+                {{ building_name }}
+            </div>
+        </div>
+        <div class="option_body">
+            <div class="option_menu">
+                <div class="option_title"> 옵션 선택</div>
+                <div class="btn_gray"> 전체해지 </div>
+                <div class="btn_light_green"> 적용 </div>
+            </div><br>
+            <div class="option_title2">요일</div>
+            <div class="option_day_of_week_container">
+                <div class="option_day_of_week"> 월 </div>
+                <div class="option_day_of_week"> 화 </div>
+                <div class="option_day_of_week"> 수 </div>
+                <div class="option_day_of_week"> 목 </div>
+                <div class="option_day_of_week"> 금 </div>
+            </div><br>
+            <div class="option_title2">층 수</div>
+            <div class="option_floor_container">
+                <div class="option_floor"> 전체 </div>
+                <div class="option_floor"> 1층 </div>
+                <div class="option_floor"> 2층 </div>
+                <div class="option_floor"> 3층 </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
