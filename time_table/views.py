@@ -81,14 +81,21 @@ class RoomList(ListView):
             tmp_start_time = datetime(now_time.year, now_time.month, now_time.day,
                                       math.floor(8.5 + int(lec.lecture_times.get().start_time) * 0.5),
                                       0 if int(lec.lecture_times.get().start_time)%2 == 1 else 30)
-            diff_min = math.floor(((tmp_start_time- now_time).seconds / 60)) # 남은 분
+            diff_min = 0
+            if((tmp_start_time- now_time).seconds < 0):
+                diff_min = -1 # 지낫을떈 -1 출력
+            else:
+                diff_min = math.floor(((tmp_start_time- now_time).seconds / 60)) # 남은 분
             tmp_floor = lec.lecture_times.get().floor #강의실 번호
             if now_day_of_week != tmp_day_of_the_week: #현재 요일 아니면 pass
                 continue
             elif floors.__contains__(tmp_floor): # 중복검사
                 continue
             else:
-                floors.append((tmp_floor, math.floor(diff_min/60), math.floor(diff_min%60)))
+                floors.append((
+                    tmp_floor,
+                    -1 if diff_min < 0 else math.floor(diff_min/60),
+                    -1 if diff_min < 0 else math.floor(diff_min%60)))
         context['building_index'] = building_index
         context['building_name'] = BUILDINGS[building_index][0]
         context['lectures_in_building'] = lectures_in_building
