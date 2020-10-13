@@ -4,6 +4,9 @@ from django.views.generic.detail import DetailView
 from .models import Lecture, LectureTime
 from time import sleep
 import pandas as pd
+from datetime import datetime, timedelta
+import time
+import math
 
 # url의 인자로 들어오는 각 건물의 index값에 대한 건물 이름을 저장한 리스트 (0번째는 편의상 채워넣음)
 # 0 인덱스로 접근시 풀네임, 1 인덱스로 접근시 축악어 - DB에는 축약어로 저장되어 있음에 유의
@@ -61,17 +64,31 @@ class RoomList(ListView):
     model = Lecture
 
     def get_context_data(self, **kwargs):
+        # 현재 요일 가져오기
+        DAYOFWEEK = ['월', '화', '수', '목', '금', '토', '일']
+        n = time.localtime().tm_wday
+        now_day_of_week = DAYOFWEEK[n]
+
         context = super().get_context_data(**kwargs)
         # self.kwargs['building_index']를 통해서 url에서 building_index값을 받을 수 있습니다.
         building_index = self.kwargs['building_index']
         lectures_in_building = Lecture.objects.filter(building=BUILDINGS[building_index][1])
         floors = []
         for lec in lectures_in_building:
-            tmp_floor = lec.lecture_times.get().floor
-            if floors.__contains__(tmp_floor): # 중복검사
+            #강의 까지 남은 시간
+            tmp_day_of_the_week = lec.lecture_times.get().day_of_the_week
+            now_time = datetime.now()
+            tmp_start_time = datetime(now_time.year, now_time.month, now_time.day,
+                                      math.floor(8.5 + int(lec.lecture_times.get().start_time) * 0.5),
+                                      0 if int(lec.lecture_times.get().start_time)%2 == 1 else 30)
+            diff_min = math.floor(((tmp_start_time- now_time).seconds / 60)) # 남은 분
+            tmp_floor = lec.lecture_times.get().floor #강의실 번호
+            if now_day_of_week != tmp_day_of_the_week: #현재 요일 아니면 pass
+                continue
+            elif floors.__contains__(tmp_floor): # 중복검사
                 continue
             else:
-                floors.append(tmp_floor)
+                floors.append((tmp_floor, math.floor(diff_min/60), math.floor(diff_min%60)))
         context['building_index'] = building_index
         context['building_name'] = BUILDINGS[building_index][0]
         context['lectures_in_building'] = lectures_in_building
