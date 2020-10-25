@@ -103,6 +103,32 @@ class RoomList(ListView):
         return context
 
 
+class Room(ListView):
+    template_name = "room.html"
+    model = Lecture
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        floor = self.kwargs['floor']
+        building_index = self.kwargs['building_index']
+        lecture_times = LectureTime.objects.filter(floor=floor)
+        lecture_information = []
+        for lecture_time in lecture_times:
+            tmp_info = {
+                'title': lecture_time.lecture.title,
+                'day_of_the_week': lecture_time.day_of_the_week,
+                'start_time': lecture_time.start_time,
+                'end_time': lecture_time.end_time,
+            }
+            lecture_information.append(tmp_info)
+        context['lecture_information'] = lecture_information
+        time_table_arr = [[0 for _ in range(5)] for _ in range(10)]
+
+        context['building_index'] = self.kwargs['building_index']
+        context['building_name'] = BUILDINGS[building_index][0]
+        return context
+
+
 def init_db():
     data = pd.read_excel("종합강의시간표내역.xlsx")[["교과목명", "강의요시/강의실", "담당교수"]].astype(str)
     for i, row in data.iterrows():

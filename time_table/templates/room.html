@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/room.css' %}">
+<div class="container">
+     <div class="header">
+            <div class="header_title">
+                {{ building_index | stringformat:"02d" }}
+                {{ building_name }}
+            </div>
+     </div>
+    <div class="contents">
+        <div>강의실 정보</div>
+        <div>시 분 후</div>
+        <div>[] 수업</div>
+    </div>
+</div>
+{% endblock %}

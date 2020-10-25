@@ -25,7 +25,7 @@
         <div class="contents">
             {% for floor in floors %}
                 <div class="room_container">
-                    <div class="room_item_name">{{ floor.0 }} 호</div>
+                    <div class="room_item_name" onclick="location.href='{{request.get_full_path}}{{floor.0}}'">{{ floor.0 }} 호</div>
                     <div class="room_item_time">{{ floor.1 }}시간 {{ floor.2 }}분 뒤 수업</div>
                     <div class="room_item_status">
                         <!-- Todo : 이거.. 빈강의실, 사용중, 수업예정 이런거 규칙이 어떻게 되는지 확인-->
