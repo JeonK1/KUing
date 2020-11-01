@@ -13,6 +13,21 @@
         <div>강의실 정보</div>
         <div>시 분 후</div>
         <div>[] 수업</div>
+        <table>
+            {% for row in time_table_arr %}
+                <tr>
+                {% for cell in row %}
+                    {% if forloop.first or forloop.parentloop.first %} <th> {% else %} <td> {% endif %}
+                        {% if cell == 1 %}
+                            <div class="time_with_lecture"/>
+                        {% else %}
+                             <div class="time_without_lecture"/>
+                        {% endif %}
+                    {% if forloop.first or forloop.parentloop.first %} </th> {% else %} </td> {% endif %}
+                {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
     </div>
 </div>
 {% endblock %}
