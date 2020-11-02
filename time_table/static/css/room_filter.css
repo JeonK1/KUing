@@ -103,12 +103,23 @@
     box-shadow: 1px 1px 7px 0.1px #dddddd;
     text-align: center;
 }
+.option_day_of_week_selected{
+    padding : 3px 10px 3px 10px;
+    margin-left: 10px;
+    margin-right: 5px;
+    color: #ffffff;
+    background:#34F0A2;
+    border:3px solid #34F0A2;
+    border-radius: 15px;
+    box-shadow: 1px 1px 7px 0.1px #dddddd;
+    text-align: center;
+}
 .option_floor_container{
     position:static;
     display: grid;
     padding-left:10px;
     padding-right:10px;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 .option_floor{
     padding : 3px 10px 3px 10px;
@@ -116,6 +127,17 @@
     margin-right: 5px;
     background:white;
     border:3px solid #ffffff;
+    border-radius: 15px;
+    box-shadow: 1px 1px 7px 0.1px #dddddd;
+    text-align: center;
+}
+.option_floor_selected{
+    padding : 3px 10px 3px 10px;
+    margin-left: 10px;
+    margin-right: 5px;
+    color: #ffffff;
+    background:#34F0A2;
+    border:3px solid #34F0A2;
     border-radius: 15px;
     box-shadow: 1px 1px 7px 0.1px #dddddd;
     text-align: center;
