@@ -72,6 +72,22 @@ class RoomList(ListView):
         context = super().get_context_data(**kwargs)
         # self.kwargs['building_index']를 통해서 url에서 building_index값을 받을 수 있습니다.
         building_index = self.kwargs['building_index']
+
+        # GET 인자로 filterType 가져오기
+        ### filterType ###
+        # 0 : 전체강의실
+        # 1 : 사용중
+        # 2 : 빈강의실
+        filterType = '0'
+        if self.request.GET:
+            try:
+                filterType = self.request.GET.get('typeNum', None)
+                if(filterType != '0' and filterType != '1' and filterType != '2'):
+                    # 0, 1, 2 이외의 숫자는 다 0으로 보내버림
+                    filterType = '0'
+            except:
+                filterType = '0'
+
         lectures_in_building = Lecture.objects.filter(building=BUILDINGS[building_index][1])
         floors = []
         for lec in lectures_in_building:
@@ -101,19 +117,28 @@ class RoomList(ListView):
                 continue
             else:
                 if now_day_of_week != tmp_day_of_the_week:  # 현재 요일 아니면 -1, -1을 넘겨줌
-                    floors.append((
-                        tmp_floor,
-                        -1,
-                        -1))
+                    if filterType == '0' or filterType == '2':
+                        floors.append((
+                            tmp_floor,
+                            -1,
+                            -1))
                 else:
-                    floors.append((
-                        tmp_floor,
-                        -1 if diff_min < 0 else math.floor(diff_min/60),
-                        -1 if diff_min < 0 else math.floor(diff_min%60)))
+                    if diff_min < 0 and (filterType == '0' or filterType == '2'):
+                        floors.append((
+                            tmp_floor,
+                            -1,
+                            -1))
+                    elif diff_min >= 0 and (filterType == '0' or filterType == '1'):
+                        floors.append((
+                            tmp_floor,
+                            math.floor(diff_min/60),
+                            math.floor(diff_min%60)))
+
         context['building_index'] = building_index
         context['building_name'] = BUILDINGS[building_index][0]
         context['lectures_in_building'] = lectures_in_building
         context['floors'] = floors
+        context['filterType'] = filterType
         return context
 
 
