@@ -2,32 +2,32 @@
 {% load static %}
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/room.css' %}">
-<div class="container">
      <div class="header">
             <div class="header_title">
                 {{ building_index | stringformat:"02d" }}
                 {{ building_name }}
             </div>
+            <div style="font-size: 24px; color: #000000;">{{floor}}호</div>
      </div>
     <div class="contents">
-        <div>강의실 정보</div>
-        <div>시 분 후</div>
+        <div style="display: flex; ">
+            <div style="font-weight: bold; font-size: 20px; color: #34F0A2; ">강의실 정보</div>
+            <div >시 분 후</div>
+        </div>
         <div>[] 수업</div>
-        <table>
-            {% for row in time_table_arr %}
-                <tr>
-                {% for cell in row %}
-                    {% if forloop.first or forloop.parentloop.first %} <th> {% else %} <td> {% endif %}
-                        {% if cell == 1 %}
-                            <div class="time_with_lecture"/>
-                        {% else %}
-                             <div class="time_without_lecture"/>
-                        {% endif %}
-                    {% if forloop.first or forloop.parentloop.first %} </th> {% else %} </td> {% endif %}
+        {% for row in time_table_arr %}
+        <div style="display: flex;">
+            {% for cell in row %}
+                {% if cell.is_using == 1 %}
+                    <div class="time_with_lecture">
+                        {{cell.title}}
+                    </div>
+                {% else %}
+                    <div class="time_without_lecture">
+                    </div>
+                {% endif %}
                 {% endfor %}
-                </tr>
-            {% endfor %}
-        </table>
+        </div>
+        {% endfor %}
     </div>
-</div>
 {% endblock %}

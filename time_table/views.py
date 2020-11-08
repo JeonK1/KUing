@@ -126,6 +126,7 @@ class Room(ListView):
             lecture_information.append(tmp_info)
         context['lecture_information'] = lecture_information
         time_table_arr = [[0 for _ in range(24)] for _ in range(5)]  # 오전 9시~19시
+
         for li in lecture_information:
             day_dict = {'월': 0, '화': 1, '수': 2, '목': 3, '금': 4}
             day_idx = day_dict[li['day_of_the_week']]
@@ -133,9 +134,13 @@ class Room(ListView):
             end_time = int(li['end_time'])
             len = end_time - start_time
             for i in range(len + 1):
-                print(start_time + i)
-                time_table_arr[day_idx][start_time + i] = 1
+                if i is 0:
+                    time_table_arr[day_idx][start_time + i] = {'is_using':1, 'title': li['title']}
+                else:
+                    time_table_arr[day_idx][start_time + i] = {'is_using':1, 'title': ''}
+
         time_table_arr = np.transpose(time_table_arr)
+        context['floor'] = floor
         context['time_table_arr'] = time_table_arr
         context['building_index'] = self.kwargs['building_index']
         context['building_name'] = BUILDINGS[building_index][0]
