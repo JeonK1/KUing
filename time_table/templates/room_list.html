@@ -46,17 +46,21 @@
                     <div class="room_item_name">{{ floor.0 }} 호</div>
                     <div class="room_item_time">
                         <!-- -1, -1이 넘어오면 비어있는 강의실이다. -->
-                        {% if floor.1 < 0 and floor.2 < 0 %}
-                            수업 없음
+                        {% if floor.1 == 0 and floor.2 == 0 %}
+                            수업 중
+                        {% elif floor.1 > 0 and floor.2 == 0 %}
+                            {{ floor.1 }}시간 뒤 수업
+                        {% elif floor.1 == 0 and floor.2 > 0 %}
+                            {{ floor.2 }}분 뒤 수업
                         {% else %}
-                            {{ floor.1 }}시간 {{ floor.2 }}분 뒤 수업
+                            수업 없음
                         {% endif %}
                     </div>
-                    <div class="room_item_status_{% if floor.2 < 0 %}unuse{% else %}use{% endif %}">
-                        {% if floor.2 < 0 %}
-                            빈강의실
+                    <div class="room_item_status_{% if floor.1 == 0 and floor.2 == 0  %}use{% else %}unuse{% endif %}">
+                        {% if floor.1 == 0 and floor.2 == 0 %}
+                            수업 중
                         {% else %}
-                            사용중
+                            빈강의실
                         {% endif %}
                     </div>
                 </div>
