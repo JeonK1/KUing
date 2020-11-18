@@ -99,16 +99,18 @@ class RoomList(ListView):
                                       math.floor(8.5 + int(lec.lecture_times.get().start_time) * 0.5),
                                       0 if int(lec.lecture_times.get().start_time)%2 == 1 else 30)
             tmp_end_time = datetime(now_time.year, now_time.month, now_time.day,
-                                      math.floor(8.5 + int(lec.lecture_times.get().end_time) * 0.5),
-                                      0 if int(lec.lecture_times.get().end_time)%2 == 1 else 30)
+                                      math.floor(9.0 + int(lec.lecture_times.get().end_time) * 0.5),
+                                      0 if int(lec.lecture_times.get().end_time)%2 == 0 else 30)
             tmp_floor = lec.lecture_times.get().floor #강의실 번호
+            # print(str(tmp_floor) + str(tmp_day_of_the_week) + str(tmp_start_time) + str(lec.lecture_times.get().start_time)) # This is Log
+            # print(str(tmp_floor) + str(tmp_day_of_the_week) + str(tmp_end_time) + str(lec.lecture_times.get().end_time)) # This is Log
             diff_min = 0
             #dataframe에 강의실정보 다 넣기(화면에 보여주기 위한 재구성)
             tmp_start_time_sec = tmp_start_time.hour*3600 + tmp_start_time.minute*60 + tmp_start_time.second
             tmp_end_time_sec = tmp_end_time.hour*3600 + tmp_end_time.minute*60 + tmp_end_time.second
-
             dataframe.loc[len(dataframe)] = [tmp_floor, tmp_day_of_the_week, tmp_start_time_sec, tmp_end_time_sec]
-        print(dataframe) # This is Log
+
+        # print(dataframe) # This is Log
         room_num_list = list(dataframe.groupby(['room_num']))
         for room_num in room_num_list:
             cur_room_num = room_num[0]
@@ -120,6 +122,10 @@ class RoomList(ListView):
             res_end_time_sec = -1 # 빈강의실
             for now_class in cur_today_class_list.iloc:
                 now_time_sec = now_time.hour * 3600 + now_time.minute * 60 + now_time.second
+                # print(room_num) # This is Log
+                # print(str(now_time.hour) + "시" + str(now_time.minute) + "분") # This is Log
+                # print(str(now_class['start_time_sec']/3600) + "시" + str((now_class['start_time_sec']%3600)/60)+"분") # This is Log
+                # print(str(now_class['end_time_sec']/3600) + "시" + str((now_class['end_time_sec']%3600)/60)+"분") # This is Log
                 if(now_time_sec < now_class['start_time_sec'] and res_start_time_sec==-1 and res_end_time_sec==-1):
                     #시작 전
                     res_start_time_sec = now_class['start_time_sec']
@@ -131,75 +137,37 @@ class RoomList(ListView):
 
             if(res_start_time_sec == -1 and res_end_time_sec == -1):
                 # 강의실 비어있음
-                floors.append((
-                    cur_room_num,
-                    res_start_time_sec,
-                    res_end_time_sec
-                ))
+                if(filterType=="0" or filterType=="2"):
+                    floors.append((
+                        cur_room_num,
+                        res_start_time_sec,
+                        res_end_time_sec
+                    ))
             elif(res_start_time_sec == 0 and res_end_time_sec == 0):
-                # 수업 중
-                floors.append((
-                    cur_room_num,
-                    res_start_time_sec,
-                    res_end_time_sec
-                ))
+                # 사용 중(수업 중)
+                if(filterType=="0" or filterType=="1"):
+                    floors.append((
+                        cur_room_num,
+                        res_start_time_sec,
+                        res_end_time_sec
+                    ))
             else:
                 # 강의 시작 N분전
-                if(res_start_time_sec - now_time_sec > 3600):
-                    #1시간 보다 더 뒤
-                    floors.append((
-                        cur_room_num,
-                        int((res_start_time_sec - now_time_sec)/3600),
-                        0
-                    ))
-                else:
-                    #1시간 안쪽
-                    floors.append((
-                        cur_room_num,
-                        0,
-                        int(((res_start_time_sec - now_time_sec) / 60) % 60)
-                    ))
-
-
-
-            # for cur_today_class in cur_today_class_list:
-
-
-            # if((tmp_start_time- now_time).seconds < 0):
-            #     diff_min = -1 # 지낫을떈 -1 출력
-            # else:
-            #     diff_min = math.floor(((tmp_start_time- now_time).seconds / 60)) # 남은 분
-            #
-            # isDouble = False # true(중복), false(중복아님)
-            # for floor in floors:
-            #     if tmp_floor==floor[0]:
-            #         isDouble = True
-            #         break
-            # # if floors.__contains__(tmp_floor): # 중복검사
-            # #     continue
-            # if isDouble:
-            #     continue
-            # elif tmp_floor in floors:
-            #     continue
-            # else:
-            #     if now_day_of_week != tmp_day_of_the_week:  # 현재 요일 아니면 -1, -1을 넘겨줌
-            #         if filterType == '0' or filterType == '2':
-            #             floors.append((
-            #                 tmp_floor,
-            #                 -1,
-            #                 -1))
-            #     else:
-            #         if diff_min < 0 and (filterType == '0' or filterType == '2'):
-            #             floors.append((
-            #                 tmp_floor,
-            #                 -1,
-            #                 -1))
-            #         elif diff_min >= 0 and (filterType == '0' or filterType == '1'):
-            #             floors.append((
-            #                 tmp_floor,
-            #                 math.floor(diff_min/60),
-            #                 math.floor(diff_min%60)))
-
+                if(filterType=="0" or filterType=="2"):
+                    if(res_start_time_sec - now_time_sec > 3600):
+                        #1시간 보다 더 뒤
+                        floors.append((
+                            cur_room_num,
+                            int((res_start_time_sec - now_time_sec)/3600),
+                            0
+                        ))
+                    else:
+                        #1시간 안쪽
+                        floors.append((
+                            cur_room_num,
+                            0,
+                            int(((res_start_time_sec - now_time_sec) / 60) % 60)
+                        ))
         context['building_index'] = building_index
         context['building_name'] = BUILDINGS[building_index][0]
         context['lectures_in_building'] = lectures_in_building
