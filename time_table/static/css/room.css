@@ -24,6 +24,7 @@ table{
     font-size: 26px;
     font-weight: bold;
     margin-bottom: 23px;
+    margin-left: 24px;
 }
 .header_option{
     position:absolute;
@@ -32,9 +33,6 @@ table{
     font-size: 18px;
 }
 
-table{
-    border-spacing: 0px;
-}
 .wrapper{
     display: flex;
     justify-content: center;
@@ -49,7 +47,13 @@ table{
     border-radius: 53px;
     width: 80%;
 }
-
+.time_counter{
+    width: 61px;
+    height: 79px;
+    margin-bottom: 1px;
+    background-color: #ffffff;
+    border: 0.5px #ACC1B9 solid;
+}
 .time_with_lecture{
     position: absolute;
     width: 60px;
@@ -58,7 +62,7 @@ table{
     height: 37px;
     font-size: 10px;
     background-color: #ACC1B9;
-    border: 0.5px #ACC1B9 solid;
+    border: 1px #ACC1B9 solid;
 }
 .time_with_lecture2{
     position: absolute;
@@ -71,18 +75,23 @@ table{
 }
 .time_with_lecture3{
     position: absolute;
-    width: 60px;
+    top: -1px;
+    width: 61px;
     z-index: 10;
-    height: 115px;
+    height: 120px;
     font-size: 10px;
-    background-color: #ACC1B9;
-    border: 0.5px black solid;
+    margin-top: 1px;
+    color: #51836F;
+    background-color: #9AFFD5;
+    border-radius: 12px;
+    border: 1px #51836F solid;
 }
 .time_without_lecture{
-    width: 60px;
+    width: 61px;
     height: 37px;
+    margin-top: 2px;
     background-color: #ffffff;
-    border: 0.5px #ACC1B9 solid;
+    border: 0.1px #353F3B solid;
 }
 .class_info_header{
     display: grid;
@@ -129,7 +138,7 @@ table{
     justify-content : center;
 }
 .bg_notUse_wrapper{
-    display:absolute;
+    display: absolute;
     text-align:center;
     margin-top:72px;
 }
@@ -139,12 +148,13 @@ table{
     color: #34f0a2;
 }
 .useBtn_wrapper{
-    display:flex;
+    display: flex;
+    display: absolute;
     justify-content : center;
 }
 .useBtn{
-    position:absolute;
-    bottom:0;
+    position: relative;
+    bottom: 0;
     width:265px;
     background-color: #34F0A2;
     border-radius: 21px;

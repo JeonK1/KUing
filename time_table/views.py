@@ -276,7 +276,7 @@ def init_db():
                     continue
                 elif building[0] == '상':  # 3글자
                     building_char_len = 3
-                elif building[0] in ['종', '경', '산', '신']:  # 2글자
+                elif building[0] in ['종', '경', '산', '신', '공']:  # 2글자
                     building_char_len = 2
                 else:
                     building_char_len = 1
@@ -284,11 +284,11 @@ def init_db():
                 building = building[0:building_char_len]
                 lecture = Lecture(title=row["교과목명"], professor=row["담당교수"], building=building)
                 lecture.save()
-                print(lecture.title)
-                sleep(0.01)
+                # print(lecture.title)
+                # sleep(0.01)
                 time_data = tmp[1:6].split('-')  # 시간은 00-00 꼴
                 if len(time_data) != 1:  # 봉사 과목같은 경우 "화00" 같은 형식, 즉 길이가 1인경우 제외
                     lecture_time = LectureTime(lecture=lecture, day_of_the_week=tmp[0],
                                                start_time=time_data[0], end_time=time_data[1], floor=floor)
                     lecture_time.save()
-    print("done")
+    # print("done")
