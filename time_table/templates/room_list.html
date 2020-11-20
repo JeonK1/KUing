@@ -26,9 +26,9 @@
                 {{ building_index | stringformat:"02d" }}
                 {{ building_name }}
             </div>
-            <div class="header_option">
-                <div class="option_item" onclick="location.href='{{request.path}}room_filter'">옵션 선택</div>
-            </div>
+            <!--<div class="header_option">-->
+                <!--<div class="option_item" onclick="location.href='{{request.path}}room_filter'">옵션 선택</div>-->
+            <!--</div>-->
         </div>
 
 <!--            {% for lec in lectures_in_building %}-->
@@ -42,7 +42,7 @@
         </div>
         <div class="contents">
             {% for floor in floors %}
-                <div class="room_container">
+                <div class="room_container" onclick="location.href='{{request.path}}{{floor.0}}'">
                     <div class="room_item_name">{{ floor.0 }} 호</div>
                     <div class="room_item_time">
                         <!-- -1, -1이 넘어오면 비어있는 강의실이다. -->

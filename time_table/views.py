@@ -7,6 +7,7 @@ import pandas as pd
 from datetime import datetime, timedelta
 import time
 import math
+import numpy as np
 
 # url의 인자로 들어오는 각 건물의 index값에 대한 건물 이름을 저장한 리스트 (0번째는 편의상 채워넣음)
 # 0 인덱스로 접근시 풀네임, 1 인덱스로 접근시 축악어 - DB에는 축약어로 저장되어 있음에 유의
@@ -175,6 +176,45 @@ class RoomList(ListView):
         context['filterType'] = filterType
         return context
 
+class Room(ListView):
+    template_name = "room.html"
+    model = Lecture
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        floor = self.kwargs['floor']
+        building_index = self.kwargs['building_index']
+        lecture_times = LectureTime.objects.filter(floor=floor)
+        lecture_information = []
+        for lecture_time in lecture_times:
+            tmp_info = {
+                'title': lecture_time.lecture.title,
+                'day_of_the_week': lecture_time.day_of_the_week,
+                'start_time': lecture_time.start_time,
+                'end_time': lecture_time.end_time,
+            }
+            lecture_information.append(tmp_info)
+        context['lecture_information'] = lecture_information
+        time_table_arr = [[0 for _ in range(24)] for _ in range(5)]  # 오전 9시~19시
+
+        for li in lecture_information:
+            day_dict = {'월': 0, '화': 1, '수': 2, '목': 3, '금': 4}
+            day_idx = day_dict[li['day_of_the_week']]
+            start_time = int(li['start_time'])
+            end_time = int(li['end_time'])
+            len = end_time - start_time
+            for i in range(len + 1):
+                if i is 0:
+                    time_table_arr[day_idx][start_time + i] = {'is_using':1, 'title': li['title']}
+                else:
+                    time_table_arr[day_idx][start_time + i] = {'is_using':1, 'title': ''}
+
+        time_table_arr = np.transpose(time_table_arr)
+        context['floor'] = floor
+        context['time_table_arr'] = time_table_arr
+        context['building_index'] = self.kwargs['building_index']
+        context['building_name'] = BUILDINGS[building_index][0]
+        return context
 
 def init_db():
     data = pd.read_excel("종합강의시간표내역.xlsx")[["교과목명", "강의요시/강의실", "담당교수"]].astype(str)
