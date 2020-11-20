@@ -2,15 +2,33 @@
 {% load static %}
 {% block content %}
     <link rel="stylesheet" href="{% static 'css/room_list.css' %}">
+    <script>
+        function useFilter(select){
+            if(select == "1"){
+                document.getElementById("typeNum").value = "1";
+                document.getElementById("form_filter").submit();
+            } else if(select == 2) {
+                document.getElementById("typeNum").value = "2";
+                document.getElementById("form_filter").submit();
+            } else {
+                document.getElementById("typeNum").value = "0";
+                document.getElementById("form_filter").submit();
+            }
+        }
+    </script>
+    <form action="/room_list/{{building_index | stringformat:"02d"}}", id="form_filter", method="get", style="display:none;">
+        <input type="text" name="typeNum" id="typeNum"/>
+        <input type="submit" value="Submit"/>
+    </form>
     <div class="container">
         <div class="header">
             <div class="header_title">
                 {{ building_index | stringformat:"02d" }}
                 {{ building_name }}
             </div>
-            <div class="header_option">
-                <div class="option_item" onclick="location.href='{{request.get_full_path}}room_filter'">옵션 선택</div>
-            </div>
+            <!--<div class="header_option">-->
+                <!--<div class="option_item" onclick="location.href='{{request.path}}room_filter'">옵션 선택</div>-->
+            <!--</div>-->
         </div>
 
 <!--            {% for lec in lectures_in_building %}-->
@@ -18,21 +36,31 @@
 <!--            {% endfor %}-->
         </div>
         <div class="menu_bar">
-            <div class="menu_item">전체강의실</div>
-            <div class="menu_item_off">사용중</div>
-            <div class="menu_item_off">빈강의실</div>
+            <div id="menu_class_all" class="menu_{% if filterType == '0' %}item{% else %}item_off{% endif %}" onclick="useFilter(0)">전체강의실</div>
+            <div id="menu_class_use" class="menu_{% if filterType == '1' %}item{% else %}item_off{% endif %}" onclick="useFilter(1)">사용중</div>
+            <div id="menu_class_empty" class="menu_{% if filterType == '2' %}item{% else %}item_off{% endif %}" onclick="useFilter(2)">빈강의실</div>
         </div>
         <div class="contents">
             {% for floor in floors %}
-                <div class="room_container">
-                    <div class="room_item_name" onclick="location.href='{{request.get_full_path}}{{floor.0}}'">{{ floor.0 }} 호</div>
-                    <div class="room_item_time">{{ floor.1 }}시간 {{ floor.2 }}분 뒤 수업</div>
-                    <div class="room_item_status">
-                        <!-- Todo : 이거.. 빈강의실, 사용중, 수업예정 이런거 규칙이 어떻게 되는지 확인-->
-                        {% if floor.2 < 0 %}
-                            빈강의실
+                <div class="room_container" onclick="location.href='{{request.path}}{{floor.0}}'">
+                    <div class="room_item_name">{{ floor.0 }} 호</div>
+                    <div class="room_item_time">
+                        <!-- -1, -1이 넘어오면 비어있는 강의실이다. -->
+                        {% if floor.1 == 0 and floor.2 == 0 %}
+                            수업 중
+                        {% elif floor.1 > 0 and floor.2 == 0 %}
+                            {{ floor.1 }}시간 뒤 수업
+                        {% elif floor.1 == 0 and floor.2 > 0 %}
+                            {{ floor.2 }}분 뒤 수업
                         {% else %}
-                            사용중
+                            수업 없음
+                        {% endif %}
+                    </div>
+                    <div class="room_item_status_{% if floor.1 == 0 and floor.2 == 0  %}use{% else %}unuse{% endif %}">
+                        {% if floor.1 == 0 and floor.2 == 0 %}
+                            사용 중
+                        {% else %}
+                            빈강의실
                         {% endif %}
                     </div>
                 </div>

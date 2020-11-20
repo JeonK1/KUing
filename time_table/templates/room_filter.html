@@ -10,27 +10,66 @@
             </div>
         </div>
         <div class="option_body">
+            <script>
+                function allCancel(){
+                    for(i = 0; i<5; i++){
+                        if(day_of_week_arr[i]==1)
+                            clickDayOfWeek(i);
+                    }
+                    for(i = 1; i < 4; i++){
+                        if(floor_arr[i]==1)
+                            clickFloor(i);
+                    }
+                }
+            </script>
             <div class="option_menu">
                 <div class="option_title"> 옵션 선택</div>
-                <div class="btn_gray"> 전체해지 </div>
+                <div class="btn_gray" onclick="allCancel()"> 전체해지 </div>
                 <div class="btn_light_green"> 적용 </div>
             </div><br>
             <div class="option_title2">요일</div>
+            <script>
+                day_of_week_arr = [0, 0, 0, 0, 0]
+                function clickDayOfWeek(select){
+                    myStr = 'day_'+select.toString()
+                    if(day_of_week_arr[select] == 0){
+                        day_of_week_arr[select] = 1;
+                        document.getElementById(myStr).className ="option_day_of_week_selected";
+                    } else {
+                        day_of_week_arr[select] = 0;
+                        document.getElementById(myStr).className ="option_day_of_week";
+                    }
+                }
+            </script>
             <div class="option_day_of_week_container">
-                <div class="option_day_of_week"> 월 </div>
-                <div class="option_day_of_week"> 화 </div>
-                <div class="option_day_of_week"> 수 </div>
-                <div class="option_day_of_week"> 목 </div>
-                <div class="option_day_of_week"> 금 </div>
+                <div class="option_day_of_week" id="day_0" onclick=clickDayOfWeek(0)> 월 </div>
+                <div class="option_day_of_week" id="day_1" onclick=clickDayOfWeek(1)> 화 </div>
+                <div class="option_day_of_week" id="day_2" onclick=clickDayOfWeek(2)> 수 </div>
+                <div class="option_day_of_week" id="day_3" onclick=clickDayOfWeek(3)> 목 </div>
+                <div class="option_day_of_week" id="day_4" onclick=clickDayOfWeek(4)> 금 </div>
             </div><br>
+            </form>
             <div class="option_title2">층 수</div>
+            <script>
+                floor_arr = [0, 0, 0, 0]
+                function clickFloor(select){
+                    myStr = 'floor_'+select.toString()
+                    if(floor_arr[select] == 0){
+                        floor_arr[select] = 1;
+                        document.getElementById(myStr).className ="option_floor_selected";
+                    } else {
+                        floor_arr[select] = 0;
+                        document.getElementById(myStr).className ="option_floor";
+                    }
+                }
+            </script>
             <div class="option_floor_container">
-                <div class="option_floor"> 전체 </div>
-                <div class="option_floor"> 1층 </div>
-                <div class="option_floor"> 2층 </div>
-                <div class="option_floor"> 3층 </div>
+                <!--Todo : 전체... 이 친구는 뭐지.. 그럼 전체랑 1층 선택하면..? 흠.. 왜 있는걸까-->
+                <!--<div class="option_floor"> 전체 </div>-->
+                <div class="option_floor" id="floor_1" onclick=clickFloor(1)> 1층 </div>
+                <div class="option_floor" id="floor_2" onclick=clickFloor(2)> 2층 </div>
+                <div class="option_floor" id="floor_3" onclick=clickFloor(3)> 3층 </div>
             </div>
         </div>
     </div>
 {% endblock %}
-

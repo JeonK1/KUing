@@ -31,13 +31,30 @@ table{
     padding-right: 30px;
     font-size: 18px;
 }
-.table_wrapper{
-    
+
+table{
+    border-spacing: 0px;
 }
+.wrapper{
+    display: flex;
+    justify-content: center;
+
+}
+.contents{
+    margin: 0 auto;
+    position: static;
+    padding: 20px 35px 0px 30px;
+    background: #FFFFFF;
+    box-shadow: 0px 3px 17px -1px rgba(0, 0, 0, 0.15);
+    border-radius: 53px;
+    width: 80%;
+}
+
 .time_with_lecture{
     position: absolute;
     width: 60px;
     z-index: 10;
+    width: 59px;
     height: 37px;
     font-size: 10px;
     background-color: #ACC1B9;
@@ -66,4 +83,77 @@ table{
     height: 37px;
     background-color: #ffffff;
     border: 0.5px #ACC1B9 solid;
+}
+.class_info_header{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom : 17px;
+}
+.class_info_title{
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+    color: #34F0A2;
+}
+.class_info_time{
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+    color: #000000;
+}
+.class_info_className{
+    font-size: 18px;
+    text-align: center;
+    color: #000000;
+    margin-bottom : 12px;
+}
+.class_info_moreBtn{
+    width:115px;
+    background-color: #34F0A2;
+    border-radius: 21px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    color: #ffffff;
+    font-size: 16px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-bottom : 12px;
+}
+.class_info_moreBtn_img{
+    margin-left : 2px;
+    margin-bottom: 4px;
+}
+.class_info_btnWrapper{
+    display:flex;
+    justify-content : center;
+}
+.bg_notUse_wrapper{
+    display:absolute;
+    text-align:center;
+    margin-top:72px;
+}
+.bg_notUse_word{
+    font-weight: bold;
+    font-size: 18px;
+    color: #34f0a2;
+}
+.useBtn_wrapper{
+    display:flex;
+    justify-content : center;
+}
+.useBtn{
+    position:absolute;
+    bottom:0;
+    width:265px;
+    background-color: #34F0A2;
+    border-radius: 21px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    color: #ffffff;
+    padding-top:10px;
+    padding-bottom:10px;
+    font-size: 16px;
+    margin-bottom: 40px;
 }

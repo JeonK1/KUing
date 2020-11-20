@@ -1,24 +1,36 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+
 <link rel="stylesheet" href="{% static 'css/room.css' %}">
-     <div class="header">
-            <div class="header_title">
-                {{ building_index | stringformat:"02d" }}
-                {{ building_name }}
-            </div>
-            <div style="font-size: 24px; color: #000000;">{{floor}}호</div>
-     </div>
-    <div class="contents">
+    <div class="header">
+        <div class="header_title">
+            {{ building_index | stringformat:"02d" }}
+            {{ building_name }}
+        </div>
+        <div style="font-size: 24px; color: #000000;">{{floor}}호</div>
+    </div>
+<div class="contents">
         <div style="display: flex; ">
-            <div style="font-weight: bold; font-size: 20px; color: #34F0A2; ">강의실 정보</div>
-            <div >시 분 후</div>
+            <!-- <div style="font-weight: bold; font-size: 20px; color: #34F0A2; ">강의실 정보</div> -->
+            <!-- <div >시 분 후</div> -->
+            <div class="class_info_header" >
+                <div class="class_info_title">강의실 정보</div>
+                <div class="class_info_time">00시 33분 후</div>
+            </div>
+            <div class="class_info_className">[학교폭력예방 및 학생의 의해] 수업</div>
+            <div class="class_info_btnWrapper">
+                <div class="class_info_moreBtn">
+                    더보기
+                    <img class="class_info_moreBtn_img" src="{% static 'img/ic_downBtn.png' %}">
+                </div>
+            </div>
         </div>
         <div>[] 수업</div>
         <div class="table_wrapper">
             <table>
                 <tr>
-                    <td></td>
+                    <td class="time_without_lecture"></td>
                     <td class="time_without_lecture">
                         월
                     </td>
@@ -106,5 +118,12 @@
                 {% endfor %}
             </table>
         </div>
+    </div>
+    <div class="bg_notUse_wrapper">
+        <img src="{% static 'img/kuing_mark.png' %}">
+        <div class="bg_notUse_word"><br>현재 사용중인 학우가 없습니다.</div>
+    </div>
+    <div class="useBtn_wrapper">
+        <div class="useBtn">사용하기</div>
     </div>
 {% endblock %}
