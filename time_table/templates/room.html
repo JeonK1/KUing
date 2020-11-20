@@ -15,19 +15,96 @@
             <div >시 분 후</div>
         </div>
         <div>[] 수업</div>
-        {% for row in time_table_arr %}
-        <div style="display: flex;">
-            {% for cell in row %}
-                {% if cell.is_using == 1 %}
-                    <div class="time_with_lecture">
-                        {{cell.title}}
+        <div class="table_wrapper">
+            <table>
+                <tr>
+                    <td></td>
+                    <td class="time_without_lecture">
+                        월
+                    </td>
+                    <td class="time_without_lecture">
+                        화
+                    </td>
+                    <td class="time_without_lecture">
+                        수
+                    </td>
+                    <td class="time_without_lecture">
+                        목
+                    </td>
+                    <td class="time_without_lecture">
+                        금
+                    </td>
+                </tr>
+            </table>
+            <table>
+                <th>
+                    
+                    <div class="time_without_lecture" style="height: 74px;">
+                        9
                     </div>
-                {% else %}
-                    <div class="time_without_lecture">
+                    <div class="time_without_lecture" style="height: 74px;">
+                        10
                     </div>
-                {% endif %}
+                    <div class="time_without_lecture" style="height: 74px;">
+                        11
+                    </div>
+                    <div class="time_without_lecture"style="height: 74px;">
+                        12
+                    </div>
+                    <div class="time_without_lecture"style="height: 74px;">
+                        13
+                    </div>
+                    <div class="time_without_lecture"style="height: 74px;">
+                        14
+                    </div>
+                    <div class="time_without_lecture"style="height: 74px;">
+                        15
+                    </div>
+                    <div class="time_without_lecture"style="height: 74px;">
+                        16
+                    </div>
+                    <div class="time_without_lecture"style="height: 74px;">
+                        17
+                    </div>
+                    <div class="time_without_lecture"style="height: 74px;">
+                        18
+                    </div>
+                    <div class="time_without_lecture"style="height: 74px;">
+                        19
+                    </div>
+                    
+                </th>
+         
+                {% for row in time_table_arr %}
+                    <td>
+                        {% for cell in row %}
+                        <div>
+                            <div class="cols" style="position: absolute;">
+                                {% if cell.is_using == 1 and cell.length == 1 %}
+                                    <div class="time_with_lecture">
+                                        {{cell.title}}
+                                    </div>
+                                {% elif cell.is_using == 1 and cell.length == 2 %}
+                                    <div class="time_with_lecture2">
+                                        {{cell.title}}
+                                    </div>
+                                {% elif cell.is_using == 1 and cell.length == 3 %}
+                                    <div class="time_with_lecture3">
+                                        {{cell.title}}
+                                    </div>
+                                {% else %}
+                                    <div class="time_without_lecture">
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="grids">
+                                <div class="time_without_lecture">
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </td>
                 {% endfor %}
+            </table>
         </div>
-        {% endfor %}
     </div>
 {% endblock %}

@@ -31,16 +31,38 @@ table{
     padding-right: 30px;
     font-size: 18px;
 }
-
+.table_wrapper{
+    
+}
 .time_with_lecture{
-    width: 59px;
+    position: absolute;
+    width: 60px;
+    z-index: 10;
     height: 37px;
     font-size: 10px;
     background-color: #ACC1B9;
     border: 0.5px #ACC1B9 solid;
 }
+.time_with_lecture2{
+    position: absolute;
+    width: 60px;
+    z-index: 10;
+    height: 74px;
+    font-size: 10px;
+    background-color: #ACC1B9;
+    border: 0.5px #ACC1B9 solid;
+}
+.time_with_lecture3{
+    position: absolute;
+    width: 60px;
+    z-index: 10;
+    height: 115px;
+    font-size: 10px;
+    background-color: #ACC1B9;
+    border: 0.5px black solid;
+}
 .time_without_lecture{
-    width: 59px;
+    width: 60px;
     height: 37px;
     background-color: #ffffff;
     border: 0.5px #ACC1B9 solid;
