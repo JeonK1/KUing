@@ -56,17 +56,17 @@
                         <div>
                             <div class="cols" style="position: absolute;">
                                 {% if cell.is_using == 1 and cell.length == 1 %}
-                                    <div class="time_with_lecture">
-                                        {{cell.title}}
-                                    </div>
+                                    <div class="time_with_lecture">{{cell.title}}</div>
                                 {% elif cell.is_using == 1 and cell.length == 2 %}
-                                    <div class="time_with_lecture2">
-                                        {{cell.title}}
-                                    </div>
+                                    <div class="time_with_lecture2">{{cell.title}}</div>
                                 {% elif cell.is_using == 1 and cell.length == 3 %}
-                                    <div class="time_with_lecture3">
-                                        {{cell.title}}
-                                    </div>
+                                    <div class="time_with_lecture3">{{cell.title}}</div>
+                                {% elif cell.is_using == 1 and cell.length == 4 %}
+                                    <div class="time_with_lecture4">{{cell.title}}</div>
+                                {% elif cell.is_using == 1 and cell.length == 5 %}
+                                    <div class="time_with_lecture5">{{cell.title}}</div>
+                                {% elif cell.is_using == 1 and cell.length == 6 %}
+                                    <div class="time_with_lecture6">{{cell.title}}</div>
                                 {% else %}
                                     <!-- <div class="time_without_lecture">
                                     </div> -->
@@ -74,11 +74,9 @@
                             </div>
                             <div class="grids">
                                 {% if cell.is_using == 1 %}
-                                    <div class="time_without_lecture" style="border-radius: 12px;">
-                                    </div>
+                                    <div class="time_without_lecture" style="border-radius: 12px;"></div>
                                 {% else %}
-                                    <div class="time_without_lecture">
-                                    </div>
+                                    <div class="time_without_lecture"></div>
                                 {% endif %}
                             </div>
                         {% endfor %}

@@ -7,4 +7,5 @@ admin.site.register(LectureTime)
 @admin.register(Lecture)
 class PostAdmin(admin.ModelAdmin):
     list_display = ['title', 'building',]
+    search_fields = ['title',]
     # list_display_links = ['id', 'title']

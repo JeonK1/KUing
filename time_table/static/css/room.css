@@ -1,5 +1,5 @@
 table{
-    border-spacing: 0px;
+    border-spacing: 1px;
 }
 .wrapper{
     display: flex;
@@ -56,6 +56,8 @@ table{
 }
 .time_with_lecture{
     position: absolute;
+    padding-top: 6px;
+    text-align: center;
     width: 60px;
     z-index: 10;
     width: 59px;
@@ -66,19 +68,71 @@ table{
 }
 .time_with_lecture2{
     position: absolute;
-    width: 60px;
-    z-index: 10;
-    height: 74px;
-    font-size: 10px;
-    background-color: #ACC1B9;
-    border: 0.5px #ACC1B9 solid;
-}
-.time_with_lecture3{
-    position: absolute;
+    padding-top: 6px;
+    text-align: center;
     top: -1px;
     width: 61px;
     z-index: 10;
-    height: 120px;
+    height: 74px;
+    font-size: 10px;
+    background-color: #9AFFD5;
+    border-radius: 12px;
+    border: 1px #51836F solid;
+}
+.time_with_lecture3{
+    position: absolute;
+    padding-top: 6px;
+    text-align: center;
+    top: -1px;
+    width: 61px;
+    z-index: 10;
+    height: 113px;
+    font-size: 10px;
+    margin-top: 1px;
+    color: #51836F;
+    background-color: #9AFFD5;
+    border-radius: 12px;
+    border: 1px #51836F solid;
+}
+.time_with_lecture4{
+    position: absolute;
+    padding-top: 6px;
+    text-align: center;
+    top: -1px;
+    width: 61px;
+    z-index: 10;
+    height: 155px;
+    font-size: 10px;
+    margin-top: 1px;
+    color: #51836F;
+    background-color: #9AFFD5;
+    border-radius: 12px;
+    border: 1px #51836F solid;
+}
+.time_with_lecture5{
+    position: absolute;
+    padding-top: 6px;
+    text-align: center;
+    top: -1px;
+    width: 61px;
+    z-index: 10;
+    height: 195px;
+
+    font-size: 10px;
+    margin-top: 1px;
+    color: #51836F;
+    background-color: #9AFFD5;
+    border-radius: 12px;
+    border: 1px #51836F solid;
+}
+.time_with_lecture6{
+    position: absolute;
+    padding-top: 6px;
+    text-align: center;
+    top: -1px;
+    width: 61px;
+    z-index: 10;
+    height: 195px;
     font-size: 10px;
     margin-top: 1px;
     color: #51836F;

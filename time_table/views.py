@@ -178,45 +178,6 @@ class RoomList(ListView):
         context['filterType'] = filterType
         return context
 
-# class Room(ListView):
-#     template_name = "room.html"
-#     model = Lecture
-
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         floor = self.kwargs['floor']
-#         building_index = self.kwargs['building_index']
-#         lecture_times = LectureTime.objects.filter(floor=floor)
-#         lecture_information = []
-#         for lecture_time in lecture_times:
-#             tmp_info = {
-#                 'title': lecture_time.lecture.title,
-#                 'day_of_the_week': lecture_time.day_of_the_week,
-#                 'start_time': lecture_time.start_time,
-#                 'end_time': lecture_time.end_time,
-#             }
-#             lecture_information.append(tmp_info)
-#         context['lecture_information'] = lecture_information
-#         time_table_arr = [[0 for _ in range(24)] for _ in range(5)]  # 오전 9시~19시
-
-#         for li in lecture_information:
-#             day_dict = {'월': 0, '화': 1, '수': 2, '목': 3, '금': 4}
-#             day_idx = day_dict[li['day_of_the_week']]
-#             start_time = int(li['start_time'])
-#             end_time = int(li['end_time'])
-#             len = end_time - start_time
-#             for i in range(len + 1):
-#                 if i is 0:
-#                     time_table_arr[day_idx][start_time + i] = {'is_using':1, 'title': li['title']}
-#                 else:
-#                     time_table_arr[day_idx][start_time + i] = {'is_using':1, 'title': ''}
-
-#         time_table_arr = np.transpose(time_table_arr)
-#         context['floor'] = floor
-#         context['time_table_arr'] = time_table_arr
-#         context['building_index'] = self.kwargs['building_index']
-#         context['building_name'] = BUILDINGS[building_index][0]
-#         return context
 
 class Room(ListView):
     template_name = "room.html"
@@ -226,16 +187,28 @@ class Room(ListView):
         context = super().get_context_data(**kwargs)
         floor = self.kwargs['floor']
         building_index = self.kwargs['building_index']
-        lecture_times = LectureTime.objects.filter(floor=floor)
+        lectures = Lecture.objects.filter(building=BUILDINGS[building_index][1])
         lecture_information = []
-        for lecture_time in lecture_times:
-            tmp_info = {
-                'title': lecture_time.lecture.title,
-                'day_of_the_week': lecture_time.day_of_the_week,
-                'start_time': lecture_time.start_time,
-                'end_time': lecture_time.end_time,
-            }
-            lecture_information.append(tmp_info)
+        for lecture in lectures:
+            times_same_floor = lecture.lecture_times.filter(floor=floor)
+            if (times_same_floor.exists()):
+                for times in times_same_floor:
+                    tmp_info = {
+                        'title': times.lecture.title,
+                        'day_of_the_week': times.day_of_the_week,
+                        'start_time': times.start_time,
+                        'end_time': times.end_time,
+                    }
+                    lecture_information.append(tmp_info)
+            
+        # for lecture_time in lecture_times:
+        #     tmp_info = {
+        #         'title': lecture_time.title,
+        #         'day_of_the_week': lecture_time.day_of_the_week,
+        #         'start_time': lecture_time.start_time,
+        #         'end_time': lecture_time.end_time,
+        #     }
+        #     lecture_information.append(tmp_info)
         context['lecture_information'] = lecture_information
         time_table_arr = [[0 for _ in range(22)] for _ in range(5)]  # 오전 9시~19시
 
@@ -244,10 +217,11 @@ class Room(ListView):
             day_idx = day_dict[li['day_of_the_week']]
             start_time = int(li['start_time'])
             end_time = int(li['end_time'])
-            len = end_time - start_time
+            len = end_time - start_time 
             # for i in range(len + 1):
                 # if i is 0:
-            time_table_arr[day_idx][start_time-1] = {'is_using':1, 'title': li['title'], 'length': len}
+            time_table_arr[day_idx][start_time - 1] = {'is_using':1, 'title': li['title'], 'length': len+1}
+            time_table_arr[day_idx][start_time - 1 + len -1 ] = {'is_using':1 }
                 # else:
                     # time_table_arr[day_idx][start_time + i] = {'is_using':1, 'title': ''}
 
