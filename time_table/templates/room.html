@@ -2,33 +2,84 @@
 {% load static %}
 {% block content %}
      <link rel="stylesheet" href="{% static 'css/room.css' %}">
-     <div class="header">
-            <div class="header_title">
-                {{ building_index | stringformat:"02d" }}
-                {{ building_name }}
-            </div>
-            <div style="font-size: 24px; color: #000000;">{{floor}}호</div>
-     </div>
-    <div class="container_wrapper">
-        <div class="contents">
-            <div class="class_info_header" >
-                <div class="class_info_title">강의실 정보</div>
-                <div class="class_info_time">00시 33분 후</div>
-            </div>
-            <div class="class_info_className">[학교폭력예방 및 학생의 의해] 수업</div>
-            <div class="class_info_btnWrapper">
-                <div class="class_info_moreBtn">
-                    더보기
-                    <img class="class_info_moreBtn_img" src="{% static 'img/ic_downBtn.png' %}">
+    <script>
+        function useBtn(select){
+            if(select == "0"){
+                document.getElementById("container_wrapper").className = "container_wrapper"
+                document.getElementById("container_reserve_wrapper").className = "container_reserve_wrapper_none"
+            } else if(select == "1") {
+                document.getElementById("container_wrapper").className = "container_wrapper_none"
+                document.getElementById("container_reserve_wrapper").className = "container_reserve_wrapper"
+            }
+        }
+    </script>
+    <div class="wrapper">
+        <div class="header">
+                <div class="header_title">
+                    {{ building_index | stringformat:"02d" }}
+                    {{ building_name }}
+                </div>
+                <div style="font-size: 24px; color: #000000;">{{floor}}호</div>
+         </div>
+        <div class="container_wrapper" id="container_wrapper">
+            <div class="contents">
+                <div class="class_info_header" >
+                    <div class="class_info_title">강의실 정보</div>
+                    <div class="class_info_time">00시 33분 후</div>
+                </div>
+                <div class="class_info_className">[학교폭력예방 및 학생의 의해] 수업</div>
+                <div class="class_info_btnWrapper">
+                    <div class="class_info_moreBtn">
+                        더보기
+                        <img class="class_info_moreBtn_img" src="{% static 'img/ic_downBtn.png' %}">
+                    </div>
                 </div>
             </div>
+            <div class="bg_notUse_wrapper">
+                <img src="{% static 'img/kuing_mark.png' %}">
+                <div class="bg_notUse_word"><br>현재 사용중인 학우가 없습니다.</div>
+            </div>
+            <div class="useBtn_wrapper" onclick="useBtn(1);">
+                <div class="useBtn">사용하기</div>
+            </div>
         </div>
-        <div class="bg_notUse_wrapper">
-            <img src="{% static 'img/kuing_mark.png' %}">
-            <div class="bg_notUse_word"><br>현재 사용중인 학우가 없습니다.</div>
-        </div>
-        <div class="useBtn_wrapper">
-            <div class="useBtn">사용하기</div>
+        <div class="container_reserve_wrapper_none" id="container_reserve_wrapper">
+            <div style="align-items: stretch;">
+                <div class="reserve_header_title">목적</div>
+                <div class="reserve_header_context">강의실 사용 목적과 요청사항을 알려주세요</div>
+                <div class="reserve_container_editbox_wrap">
+                    <textarea class="reserve_container_editbox" placeholder="예시)영상촬영중입니다. 출입을 자제해주세요"></textarea>
+                </div>
+                <div class="reserve_header_title">사용 시간</div>
+                <form class="reserve_input_form" action="">
+                    <div class="reserve_container_timewrap">
+                        <select name="start_time_hour" class="reserve_container_select" id="start_time_hour" style="background: url({% static 'img/ic_downBtn2.png' %}) no-repeat 85% 50%;">
+                            <option value="volvo">09 시</option>
+                            <option value="saab">10 시</option>
+                        </select>
+                        <select name="start_time_min" class="reserve_container_select" id="start_time_min" style="background: url({% static 'img/ic_downBtn2.png' %}) no-repeat 85% 50%;">
+                            <option value="volvo">00 분</option>
+                            <option value="saab">10 분</option>
+                        </select>
+                        <div class="reserve_container_context">사용 시작</div>
+                     </div>
+                    <div class="reserve_container_timewrap">
+                        <div class="reserve_container_context">
+                            00 시
+                        </div>
+                        <div class="reserve_container_context">
+                            +30 분
+                        </div>
+                        <div class="reserve_container_context">사용 종료</div>
+                     </div>
+                    <div class="reserve_container_comment">기본 사용시간은 고정 30분이며<br>최대 5회 연장할 수 있습니다.</div>
+                    <br><br>
+                    <div class="reserve_useBtn_wrapper" onclick="useBtn(0);">
+                        <div class="reserve_useBtn" >사용하기</div>
+                    </div>
+                    <input type="submit" value="Submit" style="display:none;">
+                </form>
+            </div>
         </div>
     </div>
 {% endblock %}

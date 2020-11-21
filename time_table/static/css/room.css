@@ -1,3 +1,8 @@
+.wrapper{
+    position:absolute;
+    width:90%;
+    height:90%;
+}
 .header_wrapper{
     position:static;
     background:black;
@@ -31,10 +36,11 @@
     font-size: 26px;
     font-weight: bold;
 }
-
-
 .container_wrapper{
     display: static;
+}
+.container_wrapper_none{
+    display: none;
 }
 .contents{
     margin: 0 auto;
@@ -120,3 +126,106 @@
     margin-bottom: 40px;
 }
 
+.container_reserve_wrapper{
+    display: static;
+    height:77%;
+    border-radius:53px;
+    border:solid 5px #34F0A2;
+    padding:40px 20px 20px 20px;
+}
+.container_reserve_wrapper_none{
+    display: none;
+}
+.reserve_header_title{
+    color: #000000;
+    font-weight: bold;
+    font-size: 22px;
+}
+.reserve_header_context{
+    color: #000000;
+    font-size: 14px;
+}
+.reserve_container_context{
+    color: #000000;
+    font-size: 15px;
+    text-align: center;
+    margin-top: 7px;
+}
+.reserve_container_comment{
+    color: #000000;
+    font-size: 14px;
+    text-align: center;
+}
+
+.reserve_container_editbox_wrap{
+    display:flex;
+    justify-content : center;
+    margin-bottom:56px;
+}
+.reserve_container_editbox{
+    width:100%;
+    border-radius: 18px;
+    border:solid 1px black;
+    color: #000000;
+    font-size: 18px;
+    margin-top:21px;
+    padding: 10px;
+    resize: none;
+}
+.reserve_container_timewrap{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    color: #000000;
+    font-size: 15px;
+    margin-bottom:30px;
+}
+.reserve_input_form{
+    margin-top:10px;
+}
+.reserve_container_select{
+    color: #000000;
+    font-size: 15px;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    border-radius:18px;
+    border:0px;
+    background: #FFFFFF;
+    box-shadow: 0px 3px 10px -1px rgba(0, 0, 0, 0.15);
+    appearance:none;
+    text-align-last: center;
+    padding: 8px 15px 8px 5px; /* 여백과 높이 결정 */
+    margin: 0px 15px 0px 15px;
+}
+.reserve_useBtn_wrapper{
+    display:flex;
+    justify-content : center;
+}
+.reserve_useBtn{
+    position:absolute;
+    bottom:0;
+    width:265px;
+    background-color: #ACC1B9;
+    border-radius: 21px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    color: #ffffff;
+    padding-top:10px;
+    padding-bottom:10px;
+    font-size: 16px;
+    margin-bottom: 40px;
+}
+
+/* textarea hint */
+::placeholder {
+  color: #ACC1B9;
+  font-size: 18px;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #acc189;
+  font-size: 18px;
+}
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: #acc189;
+  font-size: 18px;
+}
