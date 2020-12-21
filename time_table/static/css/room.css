@@ -1,5 +1,19 @@
+* {
+margin: 0;
+padding: 0;
+}
 table{
-    border-spacing: 1px;
+    /* border-spacing: 1px; */
+    border-collapse:collapse;
+    border-spacing: 0px;
+    border-style: none;
+    padding: 0;
+}
+th{
+    padding: 0;
+}
+td{
+    padding: 0;
 }
 .wrapper{
     display: flex;
@@ -47,11 +61,20 @@ table{
     border-radius: 53px;
     width: 80%;
 }
+.table_wrapper{
+    display: flex;
+    justify-content: center;
+}
 .time_counter{
-    width: 61px;
+    width: 38px;
     height: 79px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: NanumGothic;
+    font-size: 9px;
+    color: #353F3B;
     margin-bottom: 1px;
-    background-color: #ffffff;
     border: 0.5px #ACC1B9 solid;
 }
 .time_with_lecture{
@@ -143,8 +166,18 @@ table{
 .time_without_lecture{
     width: 61px;
     height: 37px;
-    margin-top: 2px;
+    text-align: center;
+    /* margin-top: 2px; */
     background-color: #ffffff;
+    border: 0.1px #353F3B solid;
+}
+.dayOfTheWeek{
+    font-family: NanumGothic;
+    font-size: 9px;
+    color: #353F3B;
+    width: 61px;
+    height: 12px;
+    text-align: center;
     border: 0.1px #353F3B solid;
 }
 .class_info_header{

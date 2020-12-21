@@ -222,6 +222,7 @@ class Room(ListView):
                 # if i is 0:
             time_table_arr[day_idx][start_time - 1] = {'is_using':1, 'title': li['title'], 'length': len+1}
             time_table_arr[day_idx][start_time - 1 + len -1 ] = {'is_using':1 }
+            # time_table_arr[day_idx][start_time - 1 + len ] = {'is_using':1 }
                 # else:
                     # time_table_arr[day_idx][start_time + i] = {'is_using':1, 'title': ''}
 
