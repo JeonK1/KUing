@@ -38,6 +38,7 @@ def delete(request):
 def login(request):
     return render(request, 'login.html')
 
+
 class RoomFilter(ListView):
     template_name = "room_filter.html"
     model = Lecture
@@ -50,7 +51,7 @@ class RoomFilter(ListView):
         floors = []
         for lec in lectures_in_building:
             tmp_floor = lec.lecture_times.get().floor
-            if floors.__contains__(tmp_floor): # 중복검사
+            if floors.__contains__(tmp_floor):  # 중복검사
                 continue
             else:
                 floors.append(tmp_floor)
@@ -59,6 +60,7 @@ class RoomFilter(ListView):
         context['lectures_in_building'] = lectures_in_building
         context['floors'] = floors
         return context
+
 
 class RoomList(ListView):
     template_name = "room_list.html"
@@ -94,7 +96,7 @@ class RoomList(ListView):
         dataframe = pd.DataFrame(columns=["room_num", "day_of_week", "start_time_sec", "end_time_sec"])
         now_time = datetime.now()
         for lec in lectures_in_building:
-            #강의 까지 남은 시간
+            # 강의 까지 남은 시간
             tmp_day_of_the_week = lec.lecture_times.get().day_of_the_week
             tmp_start_time = datetime(now_time.year, now_time.month, now_time.day,
                                       math.floor(8.5 + int(lec.lecture_times.get().start_time) * 0.5),
@@ -176,6 +178,7 @@ class RoomList(ListView):
         context['filterType'] = filterType
         return context
 
+
 class Room(ListView):
     template_name = "room.html"
     model = Lecture
@@ -184,18 +187,30 @@ class Room(ListView):
         context = super().get_context_data(**kwargs)
         floor = self.kwargs['floor']
         building_index = self.kwargs['building_index']
-        lecture_times = LectureTime.objects.filter(floor=floor)
+        lectures = Lecture.objects.filter(building=BUILDINGS[building_index][1])
         lecture_information = []
-        for lecture_time in lecture_times:
-            tmp_info = {
-                'title': lecture_time.lecture.title,
-                'day_of_the_week': lecture_time.day_of_the_week,
-                'start_time': lecture_time.start_time,
-                'end_time': lecture_time.end_time,
-            }
-            lecture_information.append(tmp_info)
+        for lecture in lectures:
+            times_same_floor = lecture.lecture_times.filter(floor=floor)
+            if (times_same_floor.exists()):
+                for times in times_same_floor:
+                    tmp_info = {
+                        'title': times.lecture.title,
+                        'day_of_the_week': times.day_of_the_week,
+                        'start_time': times.start_time,
+                        'end_time': times.end_time,
+                    }
+                    lecture_information.append(tmp_info)
+            
+        # for lecture_time in lecture_times:
+        #     tmp_info = {
+        #         'title': lecture_time.title,
+        #         'day_of_the_week': lecture_time.day_of_the_week,
+        #         'start_time': lecture_time.start_time,
+        #         'end_time': lecture_time.end_time,
+        #     }
+        #     lecture_information.append(tmp_info)
         context['lecture_information'] = lecture_information
-        time_table_arr = [[0 for _ in range(24)] for _ in range(5)]  # 오전 9시~19시
+        time_table_arr = [[0 for _ in range(22)] for _ in range(5)]  # 오전 9시~19시
 
         for li in lecture_information:
             day_dict = {'월': 0, '화': 1, '수': 2, '목': 3, '금': 4}
@@ -502,12 +517,22 @@ class RoomReservation(ListView):
                     time_table_arr[day_idx][start_time + i] = {'is_using':1, 'title': li['title']}
                 else:
                     time_table_arr[day_idx][start_time + i] = {'is_using':1, 'title': ''}
+            len = end_time - start_time 
+            # for i in range(len + 1):
+                # if i is 0:
+            time_table_arr[day_idx][start_time - 1] = {'is_using':1, 'title': li['title'], 'length': len+1}
+            time_table_arr[day_idx][start_time - 1 + len -1 ] = {'is_using':1 }
+            # time_table_arr[day_idx][start_time - 1 + len ] = {'is_using':1 }
+                # else:
+                    # time_table_arr[day_idx][start_time + i] = {'is_using':1, 'title': ''}
 
-        time_table_arr = np.transpose(time_table_arr)
+        # time_table_arr = np.transpose(time_table_arr)
         context['floor'] = floor
         context['time_table_arr'] = time_table_arr
         context['building_index'] = self.kwargs['building_index']
         context['building_name'] = BUILDINGS[building_index][0]
+        context['range_5'] = range(5)
+        context['range_24'] = range(24)
         return context
 
 
@@ -527,7 +552,7 @@ def init_db():
                     continue
                 elif building[0] == '상':  # 3글자
                     building_char_len = 3
-                elif building[0] in ['종', '경', '산', '신']:  # 2글자
+                elif building[0] in ['종', '경', '산', '신', '공']:  # 2글자
                     building_char_len = 2
                 else:
                     building_char_len = 1
@@ -535,11 +560,11 @@ def init_db():
                 building = building[0:building_char_len]
                 lecture = Lecture(title=row["교과목명"], professor=row["담당교수"], building=building)
                 lecture.save()
-                print(lecture.title)
-                sleep(0.01)
+                # print(lecture.title)
+                # sleep(0.01)
                 time_data = tmp[1:6].split('-')  # 시간은 00-00 꼴
                 if len(time_data) != 1:  # 봉사 과목같은 경우 "화00" 같은 형식, 즉 길이가 1인경우 제외
                     lecture_time = LectureTime(lecture=lecture, day_of_the_week=tmp[0],
                                                start_time=time_data[0], end_time=time_data[1], floor=floor)
                     lecture_time.save()
-    print("done")
+    # print("done")
