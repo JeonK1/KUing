@@ -1,0 +1,160 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <!--Post form-->
+    <link rel="stylesheet" href="{% static 'css/mypage.css' %}">
+    <script>
+        textarea_cur_flag = true;
+        function textarea_switch(){
+            if(textarea_cur_flag==true){
+                document.getElementById('reservation_textarea').disabled = false
+                textarea_cur_flag = false;
+                document.getElementById('reservation_textarea').focus();
+            } else {
+                document.getElementById('reservation_textarea').disabled = true
+                textarea_cur_flag = true;
+            }
+        }
+        function extend_time(){
+            var endTIme = document.getElementById('reservation_context_endTime').innerText;
+            var endTime_hour = parseInt((endTIme.split(":")[1]).split("시")[0]);
+            var endTime_min = parseInt((endTIme.split("시 ")[1]).split("분")[0]);
+
+            var leftExtendCount_text = document.getElementById('reservation_count').innerText;
+            var leftExtendCount = parseInt((leftExtendCount_text.split(":")[1]).split("회")[0]);
+            console.log(leftExtendCount);
+            if(leftExtendCount > 0){
+                //남은 횟수 존재함
+                leftExtendCount -= 1;
+                endTime_min += 30;
+                if(endTime_min >= 60){
+                    endTime_min -= 60;
+                    endTime_hour += 1;
+                }
+                if(endTime_hour >= 24){
+                    endTime_hour -= 24;
+                }
+                endTime_min_text = "";
+                endTime_hour_text = "";
+                console.log(endTime_min.toString());
+                if(endTime_min < 10){
+                    endTime_min_text="0"+endTime_min.toString();
+                } else {
+                    endTime_min_text=endTime_min.toString();
+                }
+                if(endTime_hour < 10){
+                    endTime_hour_text="0"+endTime_hour.toString();
+                } else {
+                    endTime_hour_text=endTime_hour.toString();
+                }
+                document.getElementById('reservation_context_endTime').innerText = "사용 종료 : "+endTime_hour_text+"시 "+endTime_min_text+"분"
+                document.getElementById('reservation_count').innerText = "남은 연장 횟수 : "+leftExtendCount+"회"
+            }
+        }
+        function create_modal(){
+            document.getElementById('modal_wrap').style.display="flex";
+            document.getElementById('black_bg').style.display="flex";
+        }
+        function remove_modal(){
+            document.getElementById('modal_wrap').style.display="none";
+            document.getElementById('black_bg').style.display="none";
+        }
+        function modal_yes(){
+            document.getElementById('modal_wrap').style.display="none";
+            document.getElementById('black_bg').style.display="none";
+
+            document.getElementById('wrapper').style.display="none";
+            document.getElementById('wrapper2').style.display="flex";
+        }
+        function modal_no(){
+            document.getElementById('modal_wrap').style.display="none";
+            document.getElementById('black_bg').style.display="none";
+        }
+    </script>
+    <div class="wrapper" id="wrapper">
+        <div class="header">
+            <div class="header_state">사용중</div>
+            <div class="header_title">
+                {{ building_index | stringformat:"02d" }}
+                {{ building_name }}
+            </div>
+            <div style="font-size: 24px; color: #000000;">{{floor}}호</div>
+         </div>
+        <div class="container_wrapper" id="container_wrapper">
+            <div class="contents">
+                <div class="class_info_header" >
+                    <div class="class_info_title">강의실 정보</div>
+                    <div class="class_info_time">
+                        {% if floor.1 == 0 and floor.2 == 0 %}
+                            수업 중
+                        {% elif floor.1 > 0 or floor.2 > 0 %}
+                            {{floor.1}}시 {{floor.2}}분 후
+                        {% else %}
+                            수업 없음
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="class_info_className">[{{className}}] 수업</div>
+            </div>
+
+            <div class="reservation_wrapper">
+                <div class="reservation_title">
+                    목적
+                </div>
+                <textarea class="reservation_textarea" id="reservation_textarea" disabled>영상촬영중입니다. 출입을 자제해주세요</textarea>
+                <div class="reservation_central_wrapper">
+                    <div class="reservation_btn" id="modify_btn" onclick="textarea_switch();">
+                        수정하기
+                    </div>
+                </div>
+                <div class="reservation_title">
+                    사용 시간
+                </div>
+                <div class="reservation_central_wrapper">
+                    <div class="reservation_context" id="reservation_context_startTime">
+                        사용 시작 :  09시 00분
+                    </div>
+                </div>
+                <div class="reservation_central_wrapper">
+                    <div class="reservation_context" id="reservation_context_endTime">
+                        사용 종료 :  09시 30분
+                    </div>
+                </div>
+                <div class="reservation_central_wrapper">
+                    <div class="reservation_btn" onclick="extend_time();">
+                        연장하기
+                    </div>
+                </div>
+                <div class="reservation_central_wrapper">
+                    <div class="reservation_count" id="reservation_count">
+                        남은 연장 횟수 : 5회
+                    </div>
+                </div>
+            </div>
+            <div class="bottom_wrapper">
+                <div class="useBtn_wrapper" onclick="create_modal();">
+                    <div class="useBtn">사용 종료하기</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 강의실이 없을 때 나타나는 화면 -->
+    <div class="wrapper2" id="wrapper2">
+        <img class="wrapper_kuing_mark" src="http://localhost:8000/static/img/kuing_mark.png">
+        <div class="wrapper_context">
+            현재 사용 중인<br>강의실이 없습니다.
+        </div>
+    </div>
+    <!-- 모달창 -->
+    <div class="black_bg" id="black_bg" onclick="remove_modal();"></div>
+    <div class="modal_wrap" id="modal_wrap">
+        <div class="modal_context">
+            강의실 사용을<br>종료하시겠습니까?
+        </div>
+        <div class="modal_button_wrap">
+            <div class="modal_button" id="modal_button_no" onclick="modal_no();">아니오</div>
+            <div class="modal_button" id="modal_button_yes" onclick="modal_yes();">예</div>
+        </div>
+    </div>
+
+{% endblock %}
