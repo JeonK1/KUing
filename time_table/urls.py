@@ -1,6 +1,7 @@
 from django.urls import path
 from .views import RoomList, index, RoomFilter, Room, RoomReservation, Mypage
 
+
 urlpatterns = [
     path('', index),
     path("room_list/<int:building_index>/room_filter", RoomFilter.as_view(), name="room_list"),
