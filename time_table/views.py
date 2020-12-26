@@ -217,13 +217,23 @@ class Room(ListView):
             day_idx = day_dict[li['day_of_the_week']]
             start_time = int(li['start_time'])
             end_time = int(li['end_time'])
-            len = end_time - start_time
-            for i in range(len + 1):
-                if i is 0:
-                    time_table_arr[day_idx][start_time + i] = {'is_using':1, 'title': li['title']}
-                else:
-                    time_table_arr[day_idx][start_time + i] = {'is_using':1, 'title': ''}
-        time_table_arr = np.transpose(time_table_arr)
+            len = end_time - start_time 
+            # for i in range(len + 1):
+                # if i is 0:
+            time_table_arr[day_idx][start_time - 1] = {'is_using':1, 'title': li['title'], 'length': len+1}
+            time_table_arr[day_idx][start_time - 1 + len -1 ] = {'is_using':1 }
+            # time_table_arr[day_idx][start_time - 1 + len ] = {'is_using':1 }
+                # else:
+                    # time_table_arr[day_idx][start_time + i] = {'is_using':1, 'title': ''}
+
+        # time_table_arr = np.transpose(time_table_arr)
+        context['floor'] = floor
+        context['time_table_arr'] = time_table_arr
+        context['building_index'] = self.kwargs['building_index']
+        context['building_name'] = BUILDINGS[building_index][0]
+        context['range_5'] = range(5)
+        context['range_24'] = range(24)
+        return context
 
         #### 강의실의 수업까지 남은 시간 구하기 ####
         # 현재 요일 가져오기
