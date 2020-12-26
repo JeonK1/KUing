@@ -311,7 +311,7 @@ class Room(ListView):
         context['building_index'] = self.kwargs['building_index']
         context['building_name'] = BUILDINGS[building_index][0]
         context['floorInfo'] = floorInfo[0]
-        context['className'] = getClassName(building_index, floorInfo[0])
+        # context['className'] = getClassName(building_index, floorInfo[0])
         return context
 
 class Mypage(ListView):
@@ -512,14 +512,6 @@ class RoomReservation(ListView):
             start_time = int(li['start_time'])
             end_time = int(li['end_time'])
             len = end_time - start_time
-            for i in range(len + 1):
-                if i is 0:
-                    time_table_arr[day_idx][start_time + i] = {'is_using':1, 'title': li['title']}
-                else:
-                    time_table_arr[day_idx][start_time + i] = {'is_using':1, 'title': ''}
-            len = end_time - start_time 
-            # for i in range(len + 1):
-                # if i is 0:
             time_table_arr[day_idx][start_time - 1] = {'is_using':1, 'title': li['title'], 'length': len+1}
             time_table_arr[day_idx][start_time - 1 + len -1 ] = {'is_using':1 }
             # time_table_arr[day_idx][start_time - 1 + len ] = {'is_using':1 }

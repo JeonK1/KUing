@@ -1,32 +1,20 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-    <!--Post form-->
-     <link rel="stylesheet" href="{% static 'css/room.css' %}">
-    <script>
-        function useBtn(select){
-            if(select == "0"){
-                document.getElementById("container_wrapper").className = "container_wrapper"
-                document.getElementById("container_reserve_wrapper").className = "container_reserve_wrapper_none"
-            } else if(select == "1") {
-                document.getElementById("container_wrapper").className = "container_wrapper_none"
-                document.getElementById("container_reserve_wrapper").className = "container_reserve_wrapper"
-            }
-        }
-    </script>
-    <div class="wrapper">
-        <div class="header">
-            <div class="header_title">
-                {{ building_index | stringformat:"02d" }}
-                {{ building_name }}
-            </div>
-            <div style="font-size: 24px; margin-left: 24px; color: #000000;">{{floor}}호</div>
+
+<link rel="stylesheet" href="{% static 'css/room.css' %}">
+    <div class="header">
+        <div class="header_title">
+            {{ building_index | stringformat:"02d" }}
+            {{ building_name }}
         </div>
-        <div class="container_wrapper" id="container_wrapper">
-            <div class="contents">
-                <div class="class_info_header" >
-                    <div class="class_info_title">강의실 정보</div>
-                    <div class="class_info_time">
+        <div style="font-size: 24px; margin-left: 24px; color: #000000;">{{floor}}호</div>
+    </div>
+    <div class="contents">
+        <div >
+            <div class="class_info_header" >
+                <div class="class_info_title">강의실 정보</div>
+                <div class="class_info_time">
                         {% if floor.1 == 0 and floor.2 == 0 %}
                             수업 중
                         {% elif floor.1 > 0 or floor.2 > 0 %}
@@ -35,25 +23,12 @@
                             수업 없음
                         {% endif %}
                     </div>
-                </div>
-                <div class="class_info_className">[{{className}}] 수업</div>
-                <div class="class_info_btnWrapper">
-                    <div class="class_info_moreBtn">
-                        더보기
-                        <img class="class_info_moreBtn_img" src="{% static 'img/ic_downBtn.png' %}">
-                    </div>
-                </div>
             </div>
-            <div class="bg_notUse_wrapper">
-                <img src="{% static 'img/kuing_mark.png' %}">
-                <div class="bg_notUse_word"><br>현재 사용중인 학우가 없습니다.</div>
-            </div>
-            <div class="bottom_wrapper">
-                <div class="comment_box">
-                    사용 중인 학우의<br>요청사항을 확인해보세요!
-                </div>
-                <div class="useBtn_wrapper" onclick="location.href='{{request.get_full_path}}/reservation'">
-                    <div class="useBtn">사용하기</div>
+            <div class="class_info_className">[학교폭력예방 및 학생의 의해] 수업</div>
+            <div class="class_info_btnWrapper">
+                <div class="class_info_moreBtn">
+                    더보기
+                    <img class="class_info_moreBtn_img" src="{% static 'img/ic_downBtn.png' %}">
                 </div>
             </div>
         </div>
