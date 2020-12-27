@@ -3,6 +3,26 @@
 {% block content %}
 
 <link rel="stylesheet" href="{% static 'css/room.css' %}">
+    <script>
+        var IS_MORE_CLICK = false;
+        function moreBtnClick(){
+            if(IS_MORE_CLICK){
+                // 더보기버튼 눌려있음
+                IS_MORE_CLICK = false;
+                document.getElementsByClassName('table_wrapper')[0].style.display="none";
+                document.getElementsByClassName('table_wrapper')[1].style.display="none";
+                document.getElementsByClassName('bg_notUse_wrapper')[0].style.display="";
+                document.getElementById('useBtn_wrapper').className = "useBtn_wrapper_abs";
+            } else {
+                // 더보기버튼 안누름
+                IS_MORE_CLICK = true;
+                document.getElementsByClassName('table_wrapper')[0].style.display="flex";
+                document.getElementsByClassName('table_wrapper')[1].style.display="flex";
+                document.getElementsByClassName('bg_notUse_wrapper')[0].style.display="none";
+                document.getElementById('useBtn_wrapper').className = "useBtn_wrapper_flex";
+            }
+        }
+    </script>
     <div class="header">
         <div class="header_title">
             {{ building_index | stringformat:"02d" }}
@@ -26,7 +46,7 @@
             </div>
             <div class="class_info_className">[학교폭력예방 및 학생의 의해] 수업</div>
             <div class="class_info_btnWrapper">
-                <div class="class_info_moreBtn">
+                <div class="class_info_moreBtn" onclick="moreBtnClick();">
                     더보기
                     <img class="class_info_moreBtn_img" src="{% static 'img/ic_downBtn.png' %}">
                 </div>
@@ -59,7 +79,7 @@
                         <div class="time_counter" style="border-radius: 0 0 0 12px;">19</div>
                     </th>
                     {% for row in time_table_arr %}
-                    <td> 
+                    <td>
                         {% for cell in row %}
                         {% comment %} <div> {% endcomment %}
                             <div class="cols" style="position: absolute;">
@@ -95,7 +115,7 @@
         <img src="{% static 'img/kuing_mark.png' %}">
         <div class="bg_notUse_word"><br>현재 사용중인 학우가 없습니다.</div>
     </div>
-    <div class="useBtn_wrapper">
-        <div class="useBtn">사용하기</div>
+    <div class="useBtn_wrapper_abs" id="useBtn_wrapper" onclick="location.href='{{request.get_full_path}}/reservation'">
+        <div class="useBtn">사용 표시하기</div>
     </div>
 {% endblock %}

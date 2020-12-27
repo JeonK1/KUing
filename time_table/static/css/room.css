@@ -2,6 +2,31 @@
 margin: 0;
 padding: 0;
 }
+/******* for base.html *******/
+.header_wrapper{
+    position:static;
+    background:black;
+    width:100%;
+    margin-top:8px;
+}
+.ic_kuing{
+    position:absolute;
+    left:0;
+    margin: 10px 0px 0px 30px;
+}
+.ic_mypage{
+    position:absolute;
+    right:0;
+    margin: 10px 30px 0px 0px;
+    padding:5px;
+    border-radius: 20px;
+    background:#34F0A2;
+}
+.container{
+    position:static;
+    padding: 40px 20px 0px 20px;
+}
+
 table{
     /* border-spacing: 1px; */
     border-collapse:collapse;
@@ -62,7 +87,9 @@ td{
     width: 80%;
 }
 .table_wrapper{
-    display: flex;
+    /* 처음에는 none 상태고, 더보기를 누를때 flex로 변경됨 */
+    /* display: flex; */
+    display: none;
     justify-content: center;
 }
 .time_counter{
@@ -225,7 +252,10 @@ td{
     justify-content : center;
 }
 .bg_notUse_wrapper{
-    display: absolute;
+    position: absolute;
+    left:50%;
+    transform:translate(-50%, 0%);
+
     text-align:center;
     margin-top:72px;
 }
@@ -234,10 +264,20 @@ td{
     font-size: 18px;
     color: #34f0a2;
 }
-.useBtn_wrapper{
+.useBtn_wrapper_abs{
+    position: absolute;
+    left:50%;
+    bottom: 0%;
+    transform:translate(-50%, 0%);
+
     display: flex;
-    display: absolute;
     justify-content : center;
+}
+.useBtn_wrapper_flex{
+    display: flex;
+    justify-content : center;
+    margin-top: 40px;
+    margin-bottom: 50px;
 }
 .useBtn{
     position: relative;
