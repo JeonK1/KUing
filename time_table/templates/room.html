@@ -37,16 +37,22 @@
             <div class="class_info_header" >
                 <div class="class_info_title">강의실 정보</div>
                 <div class="class_info_time">
-                    {% if floor.1 == 0 and floor.2 == 0 %}
+                    {% if leftTime.0 == 0 and leftTime.1 == 0 %}
                         수업 중
-                    {% elif floor.1 > 0 or floor.2 > 0 %}
-                        {{floor.1}}시 {{floor.2}}분 후
+                    {% elif leftTime.0 > 0 or leftTime.1 > 0 %}
+                        {{leftTime.0}}시 {{leftTime.1}}분 후
                     {% else %}
                         수업 없음
                     {% endif %}
                 </div>
             </div>
-            <div class="class_info_className">[학교폭력예방 및 학생의 의해] 수업</div>
+            <div class="class_info_className">
+                {% if className == 'none' %}
+                    <br>
+                {% else %}
+                    [{{className}}] 수업
+                {% endif %}
+            </div>
             <div class="class_info_btnWrapper">
                 <div class="btn class_info_moreBtn" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" onclick="moreBtnClick();">
                     더보기
