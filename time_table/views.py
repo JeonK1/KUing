@@ -8,6 +8,7 @@ from datetime import datetime, timedelta
 import time
 import math
 import numpy as np
+from .functions import getClassName
 
 # url의 인자로 들어오는 각 건물의 index값에 대한 건물 이름을 저장한 리스트 (0번째는 편의상 채워넣음)
 # 0 인덱스로 접근시 풀네임, 1 인덱스로 접근시 축악어 - DB에는 축약어로 저장되어 있음에 유의
@@ -94,7 +95,7 @@ class RoomList(ListView):
         lectures_in_building = Lecture.objects.filter(building=BUILDINGS[building_index][1])
         floors = []
         dataframe = pd.DataFrame(columns=["room_num", "day_of_week", "start_time_sec", "end_time_sec"])
-        now_time = datetime.datetime.now()
+        now_time = datetime.now()
         for lec in lectures_in_building:
             # 강의 까지 남은 시간
             tmp_day_of_the_week = lec.lecture_times.get().day_of_the_week
@@ -321,50 +322,6 @@ class Room(ListView):
         context['leftTime'] = leftTime
         context['className'] = getClassName(building_index, floorInfo[0])
         return context
-
-def getClassName(building_index, floorInfo):
-
-    # 남은 시간과 건물번호로 강의이름을 알아내자
-    DAYOFWEEK = ['월', '화', '수', '목', '금', '토', '일']
-    n = time.localtime().tm_wday
-    now_day_of_week = DAYOFWEEK[n]
-
-    now_time = datetime.now()
-    
-
-    if(floorInfo[1]==-1 and floorInfo[2]==-1):
-        # 강의 없음
-        return 'none'
-    else:
-        # 강의가 존재할 경우
-        # floorInfo[1] : 시작 시간 초
-        # floorInfo[2] : 끝나는 시간 초
-
-        now_time_hour = now_time.hour # 현재 시간
-        now_time_min = now_time.minute # 현재 분
-
-        start_time_hour = now_time_hour + int(int(floorInfo[1]) / (60*60))
-        start_time_min = now_time_min + int((int(floorInfo[1]) % (60*60)) / 60)
-        if(start_time_min > 57):
-            # 시작시간이 58분이나 59분이면 00분으로 만들고, 시작시간 +1 하기
-            start_time_hour = start_time_hour+1
-            start_time_min = 0
-        elif(start_time_min>27 and start_time_min < 30):
-            # 시작시간이 30분 가까이 언저리면 30분으로 만들기
-            start_time_min = 30
-
-        # 1교시 = 09시
-        start_time = 1 + (start_time_hour-9) * 2
-        if start_time_min==30:
-            start_time+=1 # 30분이면 1 더 추가
-
-        curFloor = "{:02d}".format(int(floorInfo[0]))
-        curStartTime = "{:02d}".format(int(start_time))
-        res = LectureTime.objects.filter(start_time=curStartTime,
-                                          day_of_the_week=now_day_of_week,
-                                          floor=curFloor,
-                                          lecture_id__building = BUILDINGS[building_index][1])
-        return res[0].lecture.title
 
 
 class RoomReservation(ListView):
