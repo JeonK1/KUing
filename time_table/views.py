@@ -4,7 +4,7 @@ from django.views.generic.detail import DetailView
 from .models import Lecture, LectureTime, Reservation
 from time import sleep
 import pandas as pd
-import datetime
+from datetime import datetime, timedelta
 import time
 import math
 import numpy as np
@@ -94,7 +94,7 @@ class RoomList(ListView):
         lectures_in_building = Lecture.objects.filter(building=BUILDINGS[building_index][1])
         floors = []
         dataframe = pd.DataFrame(columns=["room_num", "day_of_week", "start_time_sec", "end_time_sec"])
-        now_time = datetime.now()
+        now_time = datetime.datetime.now()
         for lec in lectures_in_building:
             # 강의 까지 남은 시간
             tmp_day_of_the_week = lec.lecture_times.get().day_of_the_week
@@ -200,15 +200,7 @@ class Room(ListView):
                         'end_time': times.end_time,
                     }
                     lecture_information.append(tmp_info)
-            
-        # for lecture_time in lecture_times:
-        #     tmp_info = {
-        #         'title': lecture_time.title,
-        #         'day_of_the_week': lecture_time.day_of_the_week,
-        #         'start_time': lecture_time.start_time,
-        #         'end_time': lecture_time.end_time,
-        #     }
-        #     lecture_information.append(tmp_info)
+
         context['lecture_information'] = lecture_information
         time_table_arr = [[0 for _ in range(22)] for _ in range(5)]  # 오전 9시~19시
 
@@ -233,7 +225,8 @@ class Room(ListView):
         context['building_name'] = BUILDINGS[building_index][0]
         context['range_5'] = range(5)
         context['range_24'] = range(24)
-        return context
+
+
 
         #### 강의실의 수업까지 남은 시간 구하기 ####
         # 현재 요일 가져오기
@@ -308,7 +301,7 @@ class Room(ListView):
                 floors.append((
                     cur_room_num,
                     int(res_start_time_sec - now_time_sec),
-                    int(res_start_time_sec - now_time_sec)
+                    int(res_end_time_sec - now_time_sec)
                 ))
         floorInfo = []
         for curFloor in floors:
@@ -316,184 +309,62 @@ class Room(ListView):
             if(int(curRoomNum) == int(floor)):
                 floorInfo.append(curFloor) # 현재 선택한 방 정보를 floorInfo로 전송
 
-        context['floor'] = floor
-        context['time_table_arr'] = time_table_arr
-        context['building_index'] = self.kwargs['building_index']
-        context['building_name'] = BUILDINGS[building_index][0]
-        context['floorInfo'] = floorInfo[0]
+        # 남은시간 추출
+        leftTime = []
+        if(floorInfo[0][1]==-1 and floorInfo[0][2]==-1):
+            leftTime.append(-1)
+            leftTime.append(-1)
+        else:
+            leftTime.append(int(int(floorInfo[0][1]) / 3600))
+            leftTime.append(int(int(int(floorInfo[0][2]) % 3600)/60))
+
+        context['leftTime'] = leftTime
         context['className'] = getClassName(building_index, floorInfo[0])
         return context
 
-class Mypage(ListView):
-    template_name = "mypage.html"
-    model = Lecture
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        # floor = self.kwargs['floor']
-        # building_index = self.kwargs['building_index']
-        # lecture_times = LectureTime.objects.filter(floor=floor)
-        # lecture_information = []
-        # for lecture_time in lecture_times:
-        #     tmp_info = {
-        #         'title': lecture_time.lecture.title,
-        #         'day_of_the_week': lecture_time.day_of_the_week,
-        #         'start_time': lecture_time.start_time,
-        #         'end_time': lecture_time.end_time,
-        #     }
-        #     lecture_information.append(tmp_info)
-        # context['lecture_information'] = lecture_information
-        # time_table_arr = [[0 for _ in range(24)] for _ in range(5)]  # 오전 9시~19시
-        #
-        # for li in lecture_information:
-        #     day_dict = {'월': 0, '화': 1, '수': 2, '목': 3, '금': 4}
-        #     day_idx = day_dict[li['day_of_the_week']]
-        #     start_time = int(li['start_time'])
-        #     end_time = int(li['end_time'])
-        #     len = end_time - start_time
-        #     for i in range(len + 1):
-        #         if i is 0:
-        #             time_table_arr[day_idx][start_time + i] = {'is_using':1, 'title': li['title']}
-        #         else:
-        #             time_table_arr[day_idx][start_time + i] = {'is_using':1, 'title': ''}
-        # time_table_arr = np.transpose(time_table_arr)
-        #
-        # #### 강의실의 수업까지 남은 시간 구하기 ####
-        # # 현재 요일 가져오기
-        # DAYOFWEEK = ['월', '화', '수', '목', '금', '토', '일']
-        # n = time.localtime().tm_wday
-        # now_day_of_week = DAYOFWEEK[n]
-        #
-        # lectures_in_building = Lecture.objects.filter(building=BUILDINGS[building_index][1])
-        # floors = []
-        # dataframe = pd.DataFrame(columns=["room_num", "day_of_week", "start_time_sec", "end_time_sec"])
-        # now_time = datetime.now()
-        # for lec in lectures_in_building:
-        #     # 강의 까지 남은 시간
-        #     tmp_day_of_the_week = lec.lecture_times.get().day_of_the_week
-        #     tmp_start_time = datetime(now_time.year, now_time.month, now_time.day,
-        #                               math.floor(8.5 + int(lec.lecture_times.get().start_time) * 0.5),
-        #                               0 if int(lec.lecture_times.get().start_time) % 2 == 1 else 30)
-        #     tmp_end_time = datetime(now_time.year, now_time.month, now_time.day,
-        #                             math.floor(9.0 + int(lec.lecture_times.get().end_time) * 0.5),
-        #                             0 if int(lec.lecture_times.get().end_time) % 2 == 0 else 30)
-        #     tmp_floor = lec.lecture_times.get().floor  # 강의실 번호
-        #     # print(str(tmp_floor) + str(tmp_day_of_the_week) + str(tmp_start_time) + str(lec.lecture_times.get().start_time)) # This is Log
-        #     # print(str(tmp_floor) + str(tmp_day_of_the_week) + str(tmp_end_time) + str(lec.lecture_times.get().end_time)) # This is Log
-        #     diff_min = 0
-        #     # dataframe에 강의실정보 다 넣기(화면에 보여주기 위한 재구성)
-        #     tmp_start_time_sec = tmp_start_time.hour * 3600 + tmp_start_time.minute * 60 + tmp_start_time.second
-        #     tmp_end_time_sec = tmp_end_time.hour * 3600 + tmp_end_time.minute * 60 + tmp_end_time.second
-        #
-        #     dataframe.loc[dataframe.shape[0]] = [tmp_floor, tmp_day_of_the_week, tmp_start_time_sec, tmp_end_time_sec]
-        #
-        # # print(dataframe) # This is Log
-        # room_num_list = list(dataframe.groupby(['room_num']))
-        # for room_num in room_num_list:
-        #     cur_room_num = room_num[0]
-        #     cur_class_list = dataframe[dataframe['room_num'] == cur_room_num]
-        #     cur_today_class_list = cur_class_list[cur_class_list['day_of_week'] == now_day_of_week]
-        #     cur_today_class_list = cur_today_class_list.sort_values(by=['start_time_sec'])
-        #
-        #     res_start_time_sec = -1  # 빈강의실
-        #     res_end_time_sec = -1  # 빈강의실
-        #     for now_class in cur_today_class_list.iloc:
-        #         now_time_sec = now_time.hour * 3600 + now_time.minute * 60 + now_time.second
-        #         # print(room_num) # This is Log
-        #         # print(str(now_time.hour) + "시" + str(now_time.minute) + "분") # This is Log
-        #         # print(str(now_class['start_time_sec']/3600) + "시" + str((now_class['start_time_sec']%3600)/60)+"분") # This is Log
-        #         # print(str(now_class['end_time_sec']/3600) + "시" + str((now_class['end_time_sec']%3600)/60)+"분") # This is Log
-        #         if (now_time_sec < now_class['start_time_sec'] and res_start_time_sec == -1 and res_end_time_sec == -1):
-        #             # 시작 전
-        #             res_start_time_sec = now_class['start_time_sec']
-        #             res_end_time_sec = now_class['end_time_sec']
-        #         elif (now_class['start_time_sec'] < now_time_sec and now_time_sec < now_class['end_time_sec']):
-        #             # 수업 중
-        #             res_start_time_sec = 0
-        #             res_end_time_sec = 0
-        #
-        #     if (res_start_time_sec == -1 and res_end_time_sec == -1):
-        #         # 강의실 비어있음
-        #         floors.append((
-        #             cur_room_num,
-        #             res_start_time_sec,
-        #             res_end_time_sec,
-        #         ))
-        #     elif (res_start_time_sec == 0 and res_end_time_sec == 0):
-        #         # 사용 중(수업 중)
-        #         floors.append((
-        #             cur_room_num,
-        #             res_start_time_sec,
-        #             res_end_time_sec,
-        #         ))
-        #     else:
-        #         # 강의 시작 N분전
-        #         floors.append((
-        #             cur_room_num,
-        #             int(res_start_time_sec - now_time_sec),
-        #             int(res_start_time_sec - now_time_sec)
-        #         ))
-        # floorInfo = []
-        # for curFloor in floors:
-        #     curRoomNum = curFloor[0] # 방 번호
-        #     if(int(curRoomNum) == int(floor)):
-        #         floorInfo.append(curFloor) # 현재 선택한 방 정보를 floorInfo로 전송
-        #
-
-        # Todo : dummydata
-        building_index = 1
-        floor = 105
-        floorInfo = [(105, 0, 33)]
-
-        context['floor'] = floor
-        #context['building_index'] = self.kwargs['building_index']
-        context['building_index'] = building_index # Todo : for test
-        context['building_name'] = BUILDINGS[building_index][0]
-        context['floorInfo'] = floorInfo[0]
-        #context['className'] = getClassName(building_index, floorInfo[0])
-        context['className'] = '학교폭력예방 및 학생의 의해' # Todo : for test
-        return context
-
 def getClassName(building_index, floorInfo):
+
     # 남은 시간과 건물번호로 강의이름을 알아내자
     DAYOFWEEK = ['월', '화', '수', '목', '금', '토', '일']
     n = time.localtime().tm_wday
     now_day_of_week = DAYOFWEEK[n]
-    now_day_of_week = '수'  # TOdo : for tset
 
     now_time = datetime.now()
-    ### Todo : 이거 아래에 있는 주석 테스트 하면서 풀기
-    # if(floorInfo[1]==-1 and floorInfo[2]==-1):
-    #     # 강의 없음
-    #     return 'none'
-    # else:
+    
 
-    now_time_hour = now_time.hour #현재 시간
-    now_time_min = now_time.minute #현재 분
+    if(floorInfo[1]==-1 and floorInfo[2]==-1):
+        # 강의 없음
+        return 'none'
+    else:
+        # 강의가 존재할 경우
+        # floorInfo[1] : 시작 시간 초
+        # floorInfo[2] : 끝나는 시간 초
 
-    start_time_hour = now_time_hour + int(floorInfo[1])
-    start_time_min = now_time_min + int(floorInfo[2])
+        now_time_hour = now_time.hour # 현재 시간
+        now_time_min = now_time.minute # 현재 분
 
-    start_time = start_time_hour-8 # 1교시 = 09시
-    if(start_time_min>0):
-        start_time+=1 # 30분이면 1 더 추가
+        start_time_hour = now_time_hour + int(int(floorInfo[1]) / (60*60))
+        start_time_min = now_time_min + int((int(floorInfo[1]) % (60*60)) / 60)
+        if(start_time_min > 57):
+            # 시작시간이 58분이나 59분이면 00분으로 만들고, 시작시간 +1 하기
+            start_time_hour = start_time_hour+1
+            start_time_min = 0
+        elif(start_time_min>27 and start_time_min < 30):
+            # 시작시간이 30분 가까이 언저리면 30분으로 만들기
+            start_time_min = 30
 
-    if(start_time_min>=60):
-        start_time_min-=60
-        start_time_hour+=1
+        # 1교시 = 09시
+        start_time = 1 + (start_time_hour-9) * 2
+        if start_time_min==30:
+            start_time+=1 # 30분이면 1 더 추가
 
-    start_time = 1# TOdo: for test
-
-    curFloor = "{:02d}".format(int(floorInfo[0]))
-    curStartTime = "{:02d}".format(int(start_time))
-
-    test = LectureTime.objects.filter(start_time=curStartTime,
-                                      day_of_the_week=now_day_of_week,
-                                      floor=curFloor,
-                                      lecture_id__building = BUILDINGS[building_index][1])
-
-    print(test)
-    return test[0].lecture.title
+        curFloor = "{:02d}".format(int(floorInfo[0]))
+        curStartTime = "{:02d}".format(int(start_time))
+        res = LectureTime.objects.filter(start_time=curStartTime,
+                                          day_of_the_week=now_day_of_week,
+                                          floor=curFloor,
+                                          lecture_id__building = BUILDINGS[building_index][1])
+        return res[0].lecture.title
 
 
 class RoomReservation(ListView):
@@ -505,6 +376,7 @@ class RoomReservation(ListView):
         return context
 
     def post(self, request, building_index, floor):
+        import datetime
         description = request.POST['description']
         start_time = datetime.time(int(request.POST['start_time_hour']), int(request.POST['start_time_min']))
         minutes_to_add = datetime.timedelta(minutes=30)
