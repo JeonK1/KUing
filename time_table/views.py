@@ -1,10 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
-from .models import Lecture, LectureTime
+from .models import Lecture, LectureTime, Reservation
 from time import sleep
 import pandas as pd
-from datetime import datetime, timedelta
+import datetime
 import time
 import math
 import numpy as np
@@ -321,7 +321,7 @@ class Room(ListView):
         context['building_index'] = self.kwargs['building_index']
         context['building_name'] = BUILDINGS[building_index][0]
         context['floorInfo'] = floorInfo[0]
-        # context['className'] = getClassName(building_index, floorInfo[0])
+        context['className'] = getClassName(building_index, floorInfo[0])
         return context
 
 class Mypage(ListView):
@@ -495,48 +495,26 @@ def getClassName(building_index, floorInfo):
     print(test)
     return test[0].lecture.title
 
+
 class RoomReservation(ListView):
     template_name = "room_reservation.html"
     model = Lecture
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        floor = self.kwargs['floor']
-        building_index = self.kwargs['building_index']
-        lecture_times = LectureTime.objects.filter(floor=floor)
-        lecture_information = []
-        for lecture_time in lecture_times:
-            tmp_info = {
-                'title': lecture_time.lecture.title,
-                'day_of_the_week': lecture_time.day_of_the_week,
-                'start_time': lecture_time.start_time,
-                'end_time': lecture_time.end_time,
-            }
-            lecture_information.append(tmp_info)
-        context['lecture_information'] = lecture_information
-        time_table_arr = [[0 for _ in range(24)] for _ in range(5)]  # 오전 9시~19시
-
-        for li in lecture_information:
-            day_dict = {'월': 0, '화': 1, '수': 2, '목': 3, '금': 4}
-            day_idx = day_dict[li['day_of_the_week']]
-            start_time = int(li['start_time'])
-            end_time = int(li['end_time'])
-            len = end_time - start_time
-            time_table_arr[day_idx][start_time - 1] = {'is_using':1, 'title': li['title'], 'length': len+1}
-            time_table_arr[day_idx][start_time - 1 + len -1 ] = {'is_using':1 }
-            # time_table_arr[day_idx][start_time - 1 + len ] = {'is_using':1 }
-                # else:
-                    # time_table_arr[day_idx][start_time + i] = {'is_using':1, 'title': ''}
-
-        # time_table_arr = np.transpose(time_table_arr)
-        context['floor'] = floor
-        context['time_table_arr'] = time_table_arr
-        context['building_index'] = self.kwargs['building_index']
-        context['building_name'] = BUILDINGS[building_index][0]
-        context['range_5'] = range(5)
-        context['range_24'] = range(24)
         return context
 
+    def post(self, request, building_index, floor):
+        description = request.POST['description']
+        start_time = datetime.time(int(request.POST['start_time_hour']), int(request.POST['start_time_min']))
+        minutes_to_add = datetime.timedelta(minutes=30)
+        end_time = (datetime.datetime.combine(datetime.date.today(), start_time) + minutes_to_add).time() # time에 timedelta 더하려면 이렇게 해야됨 ㅋ..
+
+        new_reservation = Reservation.objects.create(
+            building=BUILDINGS[building_index][1], floor=floor,
+            start_time=start_time, end_time=end_time, day_of_the_week='월'
+        )
+        return redirect(f'../../room_list/{building_index}/{floor}')
 
 
 def init_db():

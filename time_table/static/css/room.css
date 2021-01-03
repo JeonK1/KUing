@@ -15,6 +15,10 @@ th{
 td{
     padding: 0;
 }
+a {
+    text-decoration: none;
+    color: white;
+}
 .wrapper{
     display: flex;
     justify-content: center;
@@ -244,7 +248,7 @@ td{
 .useBtn{
     position: relative;
     bottom: 0;
-    width:265px;
+    width: 265px;
     background-color: #34F0A2;
     border-radius: 21px;
     text-align: center;

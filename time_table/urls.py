@@ -7,6 +7,6 @@ urlpatterns = [
     path("room_list/<int:building_index>/room_filter", RoomFilter.as_view(), name="room_list"),
     path("room_list/<int:building_index>/", RoomList.as_view(), name="room_list"),
     path("room_list/<int:building_index>/<int:floor>", Room.as_view(), name="room_list"),
-    path("room_list/<int:building_index>/<int:floor>/reservation", RoomReservation.as_view(), name="room_list"),
+    path("reservation/<int:building_index>/<int:floor>", RoomReservation.as_view(), name="reservation"),
     path("mypage", Mypage.as_view(), name="mypage"),
 ]
