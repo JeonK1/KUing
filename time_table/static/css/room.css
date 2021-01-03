@@ -44,6 +44,10 @@ a {
     text-decoration: none;
     color: white;
 }
+a:hover {
+    text-decoration: none;
+    color: white;
+}
 .wrapper{
     display: flex;
     justify-content: center;
