@@ -379,7 +379,7 @@ class RoomReservation(ListView):
         import datetime
         description = request.POST['description']
         start_time = datetime.time(int(request.POST['start_time_hour']), int(request.POST['start_time_min']))
-        minutes_to_add = datetime.timedelta(minutes=30)
+        minutes_to_add = datetime.timedelta(hours=1)
         end_time = (datetime.datetime.combine(datetime.date.today(), start_time) + minutes_to_add).time() # time에 timedelta 더하려면 이렇게 해야됨 ㅋ..
 
         new_reservation = Reservation.objects.create(
