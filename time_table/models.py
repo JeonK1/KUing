@@ -26,7 +26,7 @@ class LectureTime(models.Model):
 
 
 class Reservation(models.Model):
-    # username = models.CharField(max_length=30) # 예약자명
+    username = models.CharField(max_length=5) # 예약자명
     building = models.CharField(max_length=10, default="건물이름")  # 앞차시 뒷차시 건물이 다를경우 두개의 레코드가 생성됨
     floor = models.CharField(max_length=10)
     start_time = models.TimeField()

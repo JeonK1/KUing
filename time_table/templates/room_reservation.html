@@ -19,13 +19,17 @@
                     {{ building_index | stringformat:"02d" }}
                     {{ building_name }}
                 </div>
-                <div style="font-size: 24px; color: #000000;">{{floor}}호</div>
+                <div style="font-size: 24px; color: #000000;">{{ floor }}호</div>
         </div>
         <div class="container_reserve_wrapper" id="container_reserve_wrapper">
             <div style="align-items: stretch;">
-                
                 <form class="reserve_input_form" action="" method="post">
                     {% csrf_token %}
+                    <div class="reserve_header_title">닉네임</div>
+                    <div class="reserve_header_context">사용 표시를 등록할 닉네임을 설정해주세요</div>
+                    <div class="reserve_container_editbox_wrap">
+                        <textarea name="username" class="reserve_container_editbox" placeholder="한글,영문 5자 이내"></textarea>
+                    </div>
                     <div class="reserve_header_title">목적</div>
                     <div class="reserve_header_context">강의실 사용 목적과 요청사항을 알려주세요</div>
                     <div class="reserve_container_editbox_wrap">
