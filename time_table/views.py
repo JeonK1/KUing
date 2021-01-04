@@ -334,6 +334,7 @@ class RoomReservation(ListView):
 
     def post(self, request, building_index, floor):
         import datetime
+        username = request.POST['username']
         description = request.POST['description']
         start_time = datetime.time(int(request.POST['start_time_hour']), int(request.POST['start_time_min']))
         minutes_to_add = datetime.timedelta(hours=1)
