@@ -14,7 +14,8 @@ DAY_OF_THE_WEEK = (
 class Lecture(models.Model):
     title = models.CharField(max_length=30)
     professor = models.CharField(max_length=15)
-    building = models.CharField(max_length=10, default="건물이름")  # 앞차시 뒷차시 건물이 다를경우 두개의 레코드가 생성됨
+    building = models\
+        .CharField(max_length=10, default="건물이름")  # 앞차시 뒷차시 건물이 다를경우 두개의 레코드가 생성됨
 
 
 class LectureTime(models.Model):
