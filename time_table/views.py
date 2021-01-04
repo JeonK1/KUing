@@ -340,7 +340,7 @@ class RoomReservation(ListView):
         end_time = (datetime.datetime.combine(datetime.date.today(), start_time) + minutes_to_add).time() # time에 timedelta 더하려면 이렇게 해야됨 ㅋ..
 
         new_reservation = Reservation.objects.create(
-            building=BUILDINGS[building_index][1], floor=floor,
+            username=username, building=BUILDINGS[building_index][1], floor=floor, description=description,
             start_time=start_time, end_time=end_time, day_of_the_week='월'
         )
         return redirect(f'../../room_list/{building_index}/{floor}')
