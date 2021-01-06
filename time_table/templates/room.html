@@ -9,19 +9,27 @@
         var IS_MORE_CLICK = false;
         function moreBtnClick(){
             if(IS_MORE_CLICK){
-                // 더보기버튼 눌려있음
+                // 더보기버튼 ON >> OFF
                 IS_MORE_CLICK = false;
                 document.getElementsByClassName('table_wrapper')[0].style.display="none";
                 document.getElementsByClassName('table_wrapper')[1].style.display="none";
-                document.getElementsByClassName('bg_notUse_wrapper')[0].style.display="";
-                document.getElementById('useBtn_wrapper').className = "useBtn_wrapper_abs";
+                document.getElementsByClassName('empty_padding')[0].style.display="flex";
+                if(document.getElementsByClassName('comment_wrapper').length > 0){
+                    document.getElementsByClassName('comment_wrapper')[0].style.display="flex";
+                }
+                document.getElementsByClassName('reservation_wrapper')[0].style.display="";
+                document.getElementsByClassName('useBtn_wrapper_flex')[0].className="useBtn_wrapper_abs";
             } else {
-                // 더보기버튼 안누름
+                // 더보기버튼 OFF >> ON
                 IS_MORE_CLICK = true;
                 document.getElementsByClassName('table_wrapper')[0].style.display="flex";
                 document.getElementsByClassName('table_wrapper')[1].style.display="flex";
-                document.getElementsByClassName('bg_notUse_wrapper')[0].style.display="none";
-                document.getElementById('useBtn_wrapper').className = "useBtn_wrapper_flex";
+                document.getElementsByClassName('empty_padding')[0].style.display="none";
+                if(document.getElementsByClassName('comment_wrapper').length > 0){
+                    document.getElementsByClassName('comment_wrapper')[0].style.display="none";
+                }
+                document.getElementsByClassName('reservation_wrapper')[0].style.display="none";
+                document.getElementsByClassName('useBtn_wrapper_abs')[0].className="useBtn_wrapper_flex";
             }
         }
     </script>
@@ -40,7 +48,7 @@
                     {% if leftTime.0 == 0 and leftTime.1 == 0 %}
                         수업 중
                     {% elif leftTime.0 > 0 or leftTime.1 > 0 %}
-                        {{leftTime.0}}시 {{leftTime.1}}분 후
+                        {{leftTime.0 | stringformat:"02d"}}시 {{leftTime.1 | stringformat:"02d"}}분 후
                     {% else %}
                         수업 없음
                     {% endif %}
@@ -58,7 +66,7 @@
                     더보기
                     <img class="class_info_moreBtn_img" src="{% static 'img/ic_downBtn.png' %}">
                 </div>
-                <div class="collapse" id="collapseExample">
+                <div class="collapse" id="collapseExample"
                 <div class="card card-body">
                     <table class="table_wrapper">
                         <tr>
@@ -120,6 +128,7 @@
                     </div>
                 </div>
             </div>
+            </div>
         </div>
         <table class="table_wrapper">
             <tr>
@@ -180,11 +189,39 @@
             </table>
         </div>
     </div>
-    <div class="bg_notUse_wrapper">
-        <img src="{% static 'img/kuing_mark.png' %}">
-        <div class="bg_notUse_word"><br>현재 사용중인 학우가 없습니다.</div>
+    <div class="reservation_wrapper">
+        {% if reservationList|length == 0 %}
+            <div class="bg_notUse_wrapper">
+                <img src="{% static 'img/kuing_mark.png' %}">
+                <div class="bg_notUse_word"><br>현재 사용중인 학우가 없습니다.</div>
+            </div>
+        {% else %}
+            {% for reservation in reservationList %}
+                <div class="bg_reservation_wrapper">
+                    <div class="reservation_info_wrapper">
+                        <div class="reservation_name"> {{reservation.username}} </div>
+                        <div class="reservation_time_wrapper">
+                            <div class="reservation_time" id="reservation_time_start">사용 시작 : {{reservation.start_time | time:'H시 i분'}}</div>
+                            <div class="reservation_time" id="reservation_time_end">사용 종료 : {{reservation.end_time | time:'H시 i분'}}</div>
+                        </div>
+                    </div>
+                    <div class="reservation_comment_wrapper"> {{reservation.description}} </div>
+                </div>
+            {% endfor %}
+        {% endif %}
     </div>
-    <div class="useBtn_wrapper_abs" id="useBtn_wrapper">
-        <div class="useBtn"><a href={% url 'reservation' building_index=building_index floor=floor %}>사용 표시하기</div>
-    </div>
+    <!-- 비어있는 공간 -->
+    <div class="empty_padding"></div>
+    {% if leftTime.0 == 0 and leftTime.1 == 0 %}
+        <!-- 수업 중 -->
+        <div class="useBtn_wrapper_abs">
+            <div class="useBtn_blocked">사용 표시하기</div>
+        </div>
+    {% else %}
+        <!-- 수업 중이 아님 -->
+        <div class="comment_wrapper"> 사용 여부를 표시해주세요 </div>
+        <div class="useBtn_wrapper_abs">
+            <div class="useBtn"><a href={% url 'reservation' building_index=building_index floor=floor %}>사용 표시하기</div>
+        </div>
+    {% endif %}
 {% endblock %}

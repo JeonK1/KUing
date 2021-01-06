@@ -51,16 +51,6 @@ a:hover {
 .wrapper{
     display: flex;
     justify-content: center;
-
-}
-.contents{
-    margin: 0 auto;
-    position: static;
-    padding: 20px 20px 0px 20px;
-    background: #FFFFFF;
-    box-shadow: 0px 3px 17px -1px rgba(0, 0, 0, 0.15);
-    border-radius: 53px;
-    width: 80%;
 }
 .header{
     flex: 0 0 100%; 
@@ -89,10 +79,10 @@ a:hover {
     margin: 0 auto;
     position: static;
     padding: 20px 35px 0px 30px;
+    margin: 0px 23px 0px 24px;
     background: #FFFFFF;
     box-shadow: 0px 3px 17px -1px rgba(0, 0, 0, 0.15);
     border-radius: 53px;
-    width: 80%;
 }
 .table_wrapper{
     /* 처음에는 none 상태고, 더보기를 누를때 flex로 변경됨 */
@@ -274,14 +264,49 @@ a:hover {
     font-size: 18px;
     color: #34f0a2;
 }
+.comment_wrapper{
+    position: fixed;
+    width: 190px;
+    height: 60px;
+
+    left:50%;
+    bottom:90px;
+    transform:translate(-50%, 0%);
+
+    background-image: url("http://localhost:8000/static/img/bg_comment_box.png");
+    background-repeat: no-repeat;
+    background-position: center;
+
+    font-family: NanumGothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+
+    display: flex;
+    justify-content : center;
+    align-items: center;
+    text-align: center;
+    padding-bottom: 10px;
+
+    color: #000000;
+    z-index:16;
+
+}
 .useBtn_wrapper_abs{
-    position: absolute;
+    position: fixed;
+    width:100%;
     left:50%;
     bottom: 0%;
     transform:translate(-50%, 0%);
 
     display: flex;
     justify-content : center;
+    padding-top: 24px;
+
+    background: #FFFFFF;
+    box-shadow: 0px 1px 10px -1px rgba(0, 0, 0, 0.15);
+
+    z-index:15;
 }
 .useBtn_wrapper_flex{
     display: flex;
@@ -304,3 +329,88 @@ a:hover {
     font-size: 16px;
     margin-bottom: 40px;
 }
+.useBtn_blocked{
+    position: relative;
+    bottom: 0;
+    width: 265px;
+    background-color: #ACC1B9;
+    border-radius: 21px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    color: #ffffff;
+    padding-top:10px;
+    padding-bottom:10px;
+    font-size: 16px;
+    margin-bottom: 40px;
+}
+/* 사용표시된 내용 관련 */
+.bg_reservation_wrapper{
+    display:flex;
+    flex-direction: column;
+
+    padding: 35px 32px 29px 31px;
+    margin: 19px 38px 0px 40px;
+
+
+    border: 5px solid #9AF8D1;
+    box-sizing: border-box;
+    border-radius: 53px;
+}
+.reservation_info_wrapper{
+    display:flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+.reservation_comment_wrapper{
+    display:flex;
+    align-items: center;
+    margin-top: 19px;
+    padding: 8px 35px 7px 36px;
+
+    background: #9AF8D1;
+    border-radius: 21px;
+
+    font-family: Comfortaa;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    color: #000000;
+}
+.reservation_name{
+    display: flex;
+    text-align: center;
+
+    font-family: NanumGothic;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+
+    color: #000000;
+}
+.reservation_time_wrapper{
+    display:flex;
+    flex-direction: column;
+}
+.reservation_time{
+    display: flex;
+    align-items: center;
+
+    font-family: NanumGothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    color: #000000;
+}
+#reservation_time_end{
+    margin-top:10px;
+}
+.empty_padding{
+    display:flex;
+    width:100%;
+    height:200px;
+}
+
+/* 스크롤바 제거 */
+body{ -ms-overflow-style: none; }
+::-webkit-scrollbar { display: none; }

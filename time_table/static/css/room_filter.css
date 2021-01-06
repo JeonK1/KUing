@@ -142,3 +142,7 @@
     box-shadow: 1px 1px 7px 0.1px #dddddd;
     text-align: center;
 }
+
+/* 스크롤바 제거 */
+body{ -ms-overflow-style: none; }
+::-webkit-scrollbar { display: none; }

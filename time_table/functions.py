@@ -31,28 +31,56 @@ def getClassName(building_index, floorInfo):
         now_time_hour = now_time.hour # 현재 시간
         now_time_min = now_time.minute # 현재 분
 
-        start_time_hour = now_time_hour + int(int(floorInfo[1]) / (60*60))
-        start_time_min = now_time_min + int((int(floorInfo[1]) % (60*60)) / 60)
-        if(start_time_min > 57):
-            # 시작시간이 58분이나 59분이면 00분으로 만들고, 시작시간 +1 하기
-            start_time_hour = start_time_hour+1
-            start_time_min = 0
-        elif(start_time_min>27 and start_time_min < 30):
-            # 시작시간이 30분 가까이 언저리면 30분으로 만들기
-            start_time_min = 30
+        if(floorInfo[1]==0):
+            # 수업 중 일때
+            # 현재시간 start_time의 형식으로 변환(9시=1, 9시 30분=2)
+            start_time_hour = now_time_hour
+            start_time_min = now_time_min
 
-        # 1교시 = 09시
-        start_time = 1 + (start_time_hour-9) * 2
-        if start_time_min==30:
-            start_time+=1 # 30분이면 1 더 추가
+            start_time = 1 + (start_time_hour-9) * 2
+            # 분은 내림으로 계산하여, 30~60분일때 1증가 시켜주기
+            if(start_time_min > 30 and start_time_min < 60):
+                start_time+=1
 
-        curFloor = "{:02d}".format(int(floorInfo[0]))
-        curStartTime = "{:02d}".format(int(start_time))
-        res = LectureTime.objects.filter(start_time=curStartTime,
-                                          day_of_the_week=now_day_of_week,
-                                          floor=curFloor,
-                                          lecture_id__building = BUILDINGS[building_index][1])
-        return res[0].lecture.title
+            curStartTime = "{:02d}".format(int(start_time))
+            curFloor = "{:02d}".format(int(floorInfo[0]))
+            res = LectureTime.objects.filter(start_time__lt=curStartTime,
+                                             end_time__gt=curStartTime,
+                                             day_of_the_week=now_day_of_week,
+                                              floor=curFloor,
+                                              lecture_id__building = BUILDINGS[building_index][1])
+            return res[0].lecture.title
+        else:
+            # 수업 N분 남음
+            left_time_hour = int(int(floorInfo[1]) / (60*60))
+            left_time_min = int((int(floorInfo[1]) % (60*60)) / 60)
+            start_time_hour = now_time_hour + left_time_hour
+            start_time_min = now_time_min + left_time_min
+
+            if(start_time_min > 60):
+                start_time_min-=60
+                start_time_hour+=1
+
+            if(start_time_min > 57):
+                # 시작시간이 58분이나 59분이면 00분으로 만들고, 시작시간 +1 하기
+                start_time_hour = start_time_hour+1
+                start_time_min = 0
+            elif(start_time_min>27 and start_time_min < 30):
+                # 시작시간이 30분 가까이 언저리면 30분으로 만들기
+                start_time_min = 30
+
+            # 1교시 = 09시
+            start_time = 1 + (start_time_hour-9) * 2
+            if start_time_min==30:
+                start_time+=1 # 30분이면 1 더 추가
+
+            curFloor = "{:02d}".format(int(floorInfo[0]))
+            curStartTime = "{:02d}".format(int(start_time))
+            res = LectureTime.objects.filter(start_time=curStartTime,
+                                              day_of_the_week=now_day_of_week,
+                                              floor=curFloor,
+                                              lecture_id__building = BUILDINGS[building_index][1])
+            return res[0].lecture.title
 
 
 def init_db():

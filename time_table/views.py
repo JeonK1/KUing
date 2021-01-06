@@ -172,11 +172,23 @@ class RoomList(ListView):
                             0,
                             int(((res_start_time_sec - now_time_sec) / 60) % 60)
                         ))
+
+        ### 해당 강의실에 사용표시 있는지 확인 ###
+        roomCommentSize = []
+        for floor in floors:
+            reservationList = Reservation.objects.filter(day_of_the_week=now_day_of_week,
+                                                         building=BUILDINGS[building_index][1],
+                                                         floor=floor[0],
+                                                         end_time__gt=datetime.now().time())
+            print(reservationList)
+            roomCommentSize.append(len(reservationList))
+
         context['building_index'] = building_index
         context['building_name'] = BUILDINGS[building_index][0]
         context['lectures_in_building'] = lectures_in_building
         context['floors'] = floors
         context['filterType'] = filterType
+        context['roomCommentSize'] = roomCommentSize
         return context
 
 
@@ -321,6 +333,13 @@ class Room(ListView):
 
         context['leftTime'] = leftTime
         context['className'] = getClassName(building_index, floorInfo[0])
+        
+        ### DB에서 사용표시 남긴거 있는지 확인 ###
+        reservationList = Reservation.objects.filter(day_of_the_week=now_day_of_week,
+                                                     building=BUILDINGS[building_index][1],
+                                                     floor=floor,
+                                                     end_time__gt=datetime.now().time())
+        context['reservationList'] = reservationList
         return context
 
 
@@ -330,6 +349,11 @@ class RoomReservation(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        floor = self.kwargs['floor']
+        building_index = self.kwargs['building_index']
+        context['floor'] = floor
+        context['building_index'] = building_index
+        context['building_name'] = BUILDINGS[building_index][0]
         return context
 
     def post(self, request, building_index, floor):
@@ -340,8 +364,13 @@ class RoomReservation(ListView):
         minutes_to_add = datetime.timedelta(hours=1)
         end_time = (datetime.datetime.combine(datetime.date.today(), start_time) + minutes_to_add).time() # time에 timedelta 더하려면 이렇게 해야됨 ㅋ..
 
+        # 현재 요일 가져오기
+        DAYOFWEEK = ['월', '화', '수', '목', '금', '토', '일']
+        n = time.localtime().tm_wday
+        now_day_of_week = DAYOFWEEK[n]
+
         new_reservation = Reservation.objects.create(
             username=username, building=BUILDINGS[building_index][1], floor=floor, description=description,
-            start_time=start_time, end_time=end_time, day_of_the_week='월'
+            start_time=start_time, end_time=end_time, day_of_the_week=now_day_of_week
         )
         return redirect(f'../../room_list/{building_index}/{floor}')

@@ -56,13 +56,17 @@
                             수업 없음
                         {% endif %}
                     </div>
-                    <div class="room_item_status_{% if floor.1 == 0 and floor.2 == 0  %}use{% else %}unuse{% endif %}">
                         {% if floor.1 == 0 and floor.2 == 0 %}
-                            사용 중
+                            <!-- 수업 중 -->
+                            <div class="room_item_status_no"></div>
                         {% else %}
-                            빈강의실
+                            {% if roomCommentSize|slice:forloop.counter|last == 0 %}
+                            <!-- 빈 강의실 -->
+                                <div class="room_item_status_unuse">빈강의실</div>
+                            {% else %}
+                                <div class="room_item_status_use">사용중</div>
+                            {% endif %}
                         {% endif %}
-                    </div>
                 </div>
             {% endfor %}
 
