@@ -84,7 +84,6 @@
 
 .container_reserve_wrapper{
     display: static;
-    height:77%;
     border-radius:53px;
     border:solid 5px #34F0A2;
     padding:40px 20px 20px 20px;
@@ -157,8 +156,6 @@
     justify-content : center;
 }
 .reserve_useBtn{
-    position:absolute;
-    bottom:0;
     width:265px;
     background-color: #ACC1B9;
     border-radius: 21px;
