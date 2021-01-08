@@ -141,52 +141,64 @@ class RoomList(ListView):
 
             if(res_start_time_sec == -1 and res_end_time_sec == -1):
                 # 강의실 비어있음
-                if(filterType=="0" or filterType=="2"):
-                    floors.append((
-                        cur_room_num,
-                        res_start_time_sec,
-                        res_end_time_sec
-                    ))
+                floors.append((
+                    cur_room_num,
+                    res_start_time_sec,
+                    res_end_time_sec
+                ))
             elif(res_start_time_sec == 0 and res_end_time_sec == 0):
                 # 사용 중(수업 중)
-                if(filterType=="0" or filterType=="1"):
-                    floors.append((
-                        cur_room_num,
-                        res_start_time_sec,
-                        res_end_time_sec
-                    ))
+                floors.append((
+                    cur_room_num,
+                    res_start_time_sec,
+                    res_end_time_sec
+                ))
             else:
                 # 강의 시작 N분전
-                if(filterType=="0" or filterType=="2"):
-                    if(res_start_time_sec - now_time_sec > 3600):
-                        #1시간 보다 더 뒤
-                        floors.append((
-                            cur_room_num,
-                            int((res_start_time_sec - now_time_sec)/3600),
-                            0
-                        ))
-                    else:
-                        #1시간 안쪽
-                        floors.append((
-                            cur_room_num,
-                            0,
-                            int(((res_start_time_sec - now_time_sec) / 60) % 60)
-                        ))
+                if(res_start_time_sec - now_time_sec > 3600):
+                    #1시간 보다 더 뒤
+                    floors.append((
+                        cur_room_num,
+                        int((res_start_time_sec - now_time_sec)/3600),
+                        0
+                    ))
+                else:
+                    #1시간 안쪽
+                    floors.append((
+                        cur_room_num,
+                        0,
+                        int(((res_start_time_sec - now_time_sec) / 60) % 60)
+                    ))
 
         ### 해당 강의실에 사용표시 있는지 확인 ###
         roomCommentSize = []
+        resFloors = []
         for floor in floors:
             reservationList = Reservation.objects.filter(day_of_the_week=now_day_of_week,
                                                          building=BUILDINGS[building_index][1],
                                                          floor=floor[0],
                                                          end_time__gt=datetime.now().time())
-            print(reservationList)
-            roomCommentSize.append(len(reservationList))
+            if(filterType=='1'):
+                # 사용중
+                if(len(reservationList) > 0):
+                    #일 때는 예약 리스트가 1 이상일 때만 추가하기
+                    resFloors.append(floor)
+                    roomCommentSize.append(len(reservationList))
+            elif(filterType=='2'):
+                # 빈강의실
+                if(len(reservationList) == 0):
+                    #일 때는 예약 리스트가 0일 때만 추가하기
+                    resFloors.append(floor)
+                    roomCommentSize.append(len(reservationList))
+            else:
+                # 전체강의실
+                resFloors.append(floor)
+                roomCommentSize.append(len(reservationList))
 
         context['building_index'] = building_index
         context['building_name'] = BUILDINGS[building_index][0]
         context['lectures_in_building'] = lectures_in_building
-        context['floors'] = floors
+        context['floors'] = resFloors
         context['filterType'] = filterType
         context['roomCommentSize'] = roomCommentSize
         return context
