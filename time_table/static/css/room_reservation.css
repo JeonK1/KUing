@@ -5,22 +5,9 @@
 }
 .header_wrapper{
     position:static;
-    background:black;
     width:100%;
 }
-.ic_kuing{
-    position:absolute;
-    left:0;
-    margin: 10px 0px 0px 30px;
-}
-.ic_mypage{
-    position:absolute;
-    right:0;
-    margin: 10px 30px 0px 0px;
-    padding:5px;
-    border-radius: 20px;
-    background:#34F0A2;
-}
+
 .container{
     position:static;
     padding: 40px 20px 0px 20px;
