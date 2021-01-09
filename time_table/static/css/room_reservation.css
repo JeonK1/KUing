@@ -1,7 +1,5 @@
 .wrapper{
-    position:absolute;
-    width:90%;
-    height:90%;
+    padding: 1em;
 }
 .header_wrapper{
     position:static;
@@ -20,7 +18,7 @@
 }
 .header_title{
     margin-bottom: 23px;
-    font-size: 26px;
+    font-size: 2.6em;
     font-weight: bold;
 }
 .container_wrapper{
@@ -56,7 +54,7 @@
 .useBtn{
     position:absolute;
     bottom:0;
-    width:265px;
+    width: 265px;
     background-color: #34F0A2;
     border-radius: 21px;
     text-align: center;
@@ -71,7 +69,8 @@
 
 .container_reserve_wrapper{
     display: static;
-    border-radius:53px;
+    margin-top: 2em;
+    border-radius:5.3em;
     border:solid 5px #34F0A2;
     padding:40px 20px 20px 20px;
 }
@@ -81,11 +80,11 @@
 .reserve_header_title{
     color: #000000;
     font-weight: bold;
-    font-size: 22px;
+    font-size: 2.2em;
 }
 .reserve_header_context{
     color: #000000;
-    font-size: 14px;
+    font-size: 1.4em;
 }
 .reserve_container_context{
     color: #000000;
@@ -95,7 +94,7 @@
 }
 .reserve_container_comment{
     color: #000000;
-    font-size: 14px;
+    font-size: 1.4em;
     text-align: center;
 }
 
@@ -106,12 +105,12 @@
 }
 .reserve_container_editbox{
     width:100%;
-    border-radius: 18px;
+    border-radius: 1.8em;
     border:solid 1px black;
     color: #000000;
-    font-size: 18px;
-    margin-top:21px;
-    padding: 10px;
+    font-size: 1.8em;
+    margin-top: 2.1em;
+    padding: 1em;
     resize: none;
 }
 .reserve_container_timewrap{
@@ -126,17 +125,17 @@
 }
 .reserve_container_select{
     color: #000000;
-    font-size: 15px;
+    font-size: 1.5em;
     -webkit-appearance:none;
     -moz-appearance:none;
-    border-radius:18px;
+    border-radius: 1.8em;
     border:0px;
     background: #FFFFFF;
     box-shadow: 0px 3px 10px -1px rgba(0, 0, 0, 0.15);
     appearance:none;
     text-align-last: center;
     padding: 8px 15px 8px 5px; /* 여백과 높이 결정 */
-    margin: 0px 15px 0px 15px;
+    margin: 1.3em 1.5em 0px 1.5em;
 }
 .reserve_useBtn_wrapper{
     display:flex;
