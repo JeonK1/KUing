@@ -67,7 +67,8 @@ a:hover {
     border-radius: 5.3em;
 }
 .collapse {
-    margin-top: 30px;
+    margin-top: 3em;
+    margin-bottom: 3em;
     width: 100%;
 }
 .table_wrapper{
@@ -267,7 +268,6 @@ a:hover {
     position: fixed;
     width: 190px;
     height: 60px;
-
     left:50%;
     bottom:90px;
     transform:translate(-50%, 0%);
@@ -354,7 +354,7 @@ a:hover {
 
     border: 5px solid #9AF8D1;
     box-sizing: border-box;
-    border-radius: 53px;
+    border-radius: 5.3em;
 }
 .reservation_info_wrapper{
     display:flex;
@@ -368,12 +368,12 @@ a:hover {
     padding: 8px 35px 7px 36px;
 
     background: #9AF8D1;
-    border-radius: 21px;
+    border-radius: 2.1em;
 
     font-family: Comfortaa;
     font-style: normal;
     font-weight: normal;
-    font-size: 18px;
+    font-size: 1.8em;
     color: #000000;
 }
 .reservation_name{
@@ -383,7 +383,7 @@ a:hover {
     font-family: NanumGothic;
     font-style: normal;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 2em;
 
     color: #000000;
 }
@@ -398,16 +398,16 @@ a:hover {
     font-family: NanumGothic;
     font-style: normal;
     font-weight: normal;
-    font-size: 18px;
+    font-size: 1.8em;
     color: #000000;
 }
 #reservation_time_end{
-    margin-top:10px;
+    margin-top: 1em;
 }
 .empty_padding{
     display:flex;
     width:100%;
-    height:200px;
+    height:2em;
 }
 
 /* 스크롤바 제거 */
