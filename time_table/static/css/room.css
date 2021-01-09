@@ -3,11 +3,6 @@ margin: 0;
 padding: 0;
 }
 
-.container{
-    position:static;
-    padding: 40px 20px 0px 20px;
-}
-
 table{
     /* border-spacing: 1px; */
     border-collapse:collapse;
@@ -33,17 +28,22 @@ a:hover {
     display: flex;
     justify-content: center;
 }
+
+.ic_kuing{
+    height: 3rem;
+    left:0;
+    margin: 3.6rem 0px 0px 3.4rem;
+}
 .header{
-    flex: 0 0 100%; 
-    margin-top: 34px;
+    flex: 0 0 100%;
     margin-bottom: 1.1em;
-    margin-top: 3em;
+    margin-top: 4.3rem;
 }
 .header_title{
-    font-size: 2.6em;
+    font-size: 3.5rem;
+    margin-left: 3.5rem;
     font-weight: bold;
     margin-bottom: 23px;
-    margin-left: 24px;
 }
 .header_option{
     position:absolute;
@@ -60,11 +60,11 @@ a:hover {
 .contents{
     margin: 0 auto;
     position: static;
-    padding: 20px 35px 0px 30px;
-    margin: 0px 23px 0px 24px;
+    padding: 30px 35px 20px 30px;
+    margin: 0px 3rem 35px 3rem;
     background: #FFFFFF;
     box-shadow: 0px 3px 17px -1px rgba(0, 0, 0, 0.15);
-    border-radius: 5.3em;
+    border-radius: 8rem;
 }
 .collapse {
     margin-top: 3em;
@@ -217,39 +217,37 @@ a:hover {
 }
 .class_info_title{
     font-weight: bold;
-    font-size: 2em;
+    font-size: 2.5em;
     text-align: center;
     color: #34F0A2;
 }
 .class_info_time{
     font-weight: bold;
-    font-size: 1.8em;
+    font-size: 2.5rem;
     text-align: center;
     color: #000000;
 }
 .class_info_className{
-    font-size: 18px;
+    font-size: 2.3rem;
     text-align: center;
     color: #000000;
     margin-bottom : 12px;
 }
 .class_info_moreBtn{
-    width: 11.5em;
-    line-height: 2em;
-    height: 2.9em;
     background-color: #34F0A2;
-    border-radius: 2.1em;
+    border-radius: 2.1rem;
     text-align: center;
     font-weight: bold;
     color: #ffffff;
-    font-size: 1.6em;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    margin-bottom : 12px;
+    font-size: 2rem;
+    padding: 10px 60px 10px 60px;
+    margin: 0px 10px 12px 10px;
 }
 .class_info_moreBtn_img{
-    margin-left : 2px;
-    margin-bottom: 4px;
+    width:20px;
+    height:10px;
+    margin-left : 5px;
+    margin-bottom: 10px;
 }
 .class_info_btnWrapper{
     display: flex;
@@ -259,21 +257,29 @@ a:hover {
 }
 .bg_notUse_wrapper{
     position: absolute;
+    top:50%;
     left:50%;
-    transform:translate(-50%, 0%);
+    transform:translate(-50%, -50%);
 
     text-align:center;
-    margin-top:72px;
+    margin-top:10rem;
+}
+.ic_kuing_img{
+    width: 7rem;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
 }
 .bg_notUse_word{
     font-weight: bold;
-    font-size: 18px;
+    font-size: 2rem;
     color: #34f0a2;
 }
 .comment_wrapper{
     position: fixed;
-    width: 190px;
-    height: 60px;
+    width: 350px;
+    height: 100px;
     left:50%;
     bottom:90px;
     transform:translate(-50%, 0%);
@@ -281,17 +287,19 @@ a:hover {
     background-image: url("http://localhost:8000/static/img/bg_comment_box.png");
     background-repeat: no-repeat;
     background-position: center;
+    background-size: cover;
 
     font-family: NanumGothic;
     font-style: normal;
     font-weight: normal;
-    font-size: 14px;
+    font-size: 1.5rem;
 
     display: flex;
     justify-content : center;
     align-items: center;
     text-align: center;
     padding-bottom: 10px;
+    margin-bottom: 45px;
 
     color: #000000;
     z-index:16;
@@ -306,7 +314,8 @@ a:hover {
 
     display: flex;
     justify-content : center;
-    padding-top: 24px;
+    padding-top: 45px;
+    padding-bottom: 15px;
 
     background: #FFFFFF;
     box-shadow: 0px 1px 10px -1px rgba(0, 0, 0, 0.15);
@@ -322,41 +331,38 @@ a:hover {
 .useBtn{
     position: relative;
     bottom: 0;
-    width: 265px;
+    width: 100%;
     background-color: #34F0A2;
-    border-radius: 21px;
+    border-radius: 2rem;
     text-align: center;
     font-weight: bold;
     font-size: 18px;
     color: #ffffff;
-    padding-top:10px;
-    padding-bottom:10px;
-    font-size: 16px;
-    margin-bottom: 40px;
+    font-size: 2rem;
+    padding: 10px 0px 10px 0px;
+    margin: 0px 15rem 40px 15rem;
 }
 .useBtn_blocked{
     position: relative;
     bottom: 0;
-    width: 265px;
+    width: 100%;
     background-color: #ACC1B9;
-    border-radius: 21px;
+    border-radius: 2rem;
     text-align: center;
     font-weight: bold;
     font-size: 18px;
     color: #ffffff;
-    padding-top:10px;
-    padding-bottom:10px;
-    font-size: 16px;
-    margin-bottom: 40px;
+    font-size: 2rem;
+    padding: 10px 0px 10px 0px;
+    margin: 0px 15rem 40px 15rem;
 }
 /* 사용표시된 내용 관련 */
 .bg_reservation_wrapper{
     display:flex;
     flex-direction: column;
 
-    padding: 35px 32px 29px 31px;
-    margin: 19px 38px 0px 40px;
-
+    padding: 35px 50px 29px 50px;
+    margin: 0px 38px 20px 40px;
 
     border: 5px solid #9AF8D1;
     box-sizing: border-box;
@@ -374,12 +380,12 @@ a:hover {
     padding: 8px 35px 7px 36px;
 
     background: #9AF8D1;
-    border-radius: 2.1em;
+    border-radius: 4rem;
 
     font-family: Comfortaa;
     font-style: normal;
     font-weight: normal;
-    font-size: 1.8em;
+    font-size: 1.8rem;
     color: #000000;
 }
 .reservation_name{
@@ -389,7 +395,7 @@ a:hover {
     font-family: NanumGothic;
     font-style: normal;
     font-weight: bold;
-    font-size: 2em;
+    font-size: 2rem;
 
     color: #000000;
 }
@@ -408,7 +414,7 @@ a:hover {
     color: #000000;
 }
 #reservation_time_end{
-    margin-top: 1em;
+    margin-top: 0.5em;
 }
 .empty_padding{
     display:flex;

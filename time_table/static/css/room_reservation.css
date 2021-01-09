@@ -1,5 +1,6 @@
-.wrapper{
-    padding: 1em;
+* {
+    margin: 0;
+    padding: 0;
 }
 .header_wrapper{
     position:static;
@@ -8,19 +9,25 @@
 
 .container{
     position:static;
-    padding: 40px 20px 0px 20px;
+    padding: 15px 20px 0px 20px;
+}
+.ic_kuing{
+    height: 3rem;
+    left:0;
+    margin: 3.6rem 0px 0px 3.4rem;
 }
 .header{
     flex: 0 0 100%;
-    margin-top: 40px;
-    margin-left: 2px;
-    margin-bottom: 10px;
+    margin-bottom: 1.1em;
+    margin-top: 4.3rem;
 }
 .header_title{
-    margin-bottom: 23px;
-    font-size: 2.6em;
+    font-size: 3.5rem;
+    margin-left: 3.5rem;
     font-weight: bold;
+    margin-bottom: 31px;
 }
+
 .container_wrapper{
     display: static;
 }
@@ -69,10 +76,10 @@
 
 .container_reserve_wrapper{
     display: static;
-    margin-top: 2em;
-    border-radius:5.3em;
-    border:solid 5px #34F0A2;
-    padding:40px 20px 20px 20px;
+    border-radius:6.0rem;
+    border:solid 10px #34F0A2;
+    margin: 2rem 3rem 3rem 3rem;
+    padding:4rem 3rem 2rem 3rem;
 }
 .container_reserve_wrapper_none{
     display: none;
@@ -80,22 +87,27 @@
 .reserve_header_title{
     color: #000000;
     font-weight: bold;
-    font-size: 2.2em;
+    font-size: 2.5rem;
 }
 .reserve_header_context{
     color: #000000;
-    font-size: 1.4em;
+    font-size: 1.5rem;
+}
+#context_start_msg{
+    margin-top: 3.5rem;
 }
 .reserve_container_context{
     color: #000000;
-    font-size: 15px;
+    font-size: 2rem;
     text-align: center;
-    margin-top: 7px;
+    margin-top: 2rem;
 }
 .reserve_container_comment{
     color: #000000;
     font-size: 1.4em;
     text-align: center;
+    margin-top:40px;
+    margin-bottom:20px;
 }
 
 .reserve_container_editbox_wrap{
@@ -108,17 +120,17 @@
     border-radius: 1.8em;
     border:solid 1px black;
     color: #000000;
-    font-size: 1.8em;
-    margin-top: 2.1em;
-    padding: 1em;
+    font-size: 1.8rem;
+    margin-top: 1.5rem;
+    padding: 1.5rem 2rem 0.5rem 2rem;
     resize: none;
 }
 .reserve_container_timewrap{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     color: #000000;
-    font-size: 15px;
-    margin-bottom:30px;
+    font-size: 1.3rem;
+    margin-bottom:0px;
 }
 .reserve_input_form{
     margin-top:10px;
@@ -134,7 +146,7 @@
     box-shadow: 0px 3px 10px -1px rgba(0, 0, 0, 0.15);
     appearance:none;
     text-align-last: center;
-    padding: 8px 15px 8px 5px; /* 여백과 높이 결정 */
+    padding: 20px 15px 20px 5px; /* 여백과 높이 결정 */
     margin: 1.3em 1.5em 0px 1.5em;
 }
 .reserve_useBtn_wrapper{
@@ -142,31 +154,31 @@
     justify-content : center;
 }
 .reserve_useBtn{
-    width:265px;
+    width:100%;
     background-color: #ACC1B9;
-    border-radius: 21px;
+    border-radius: 40px;
+    border-color: white;
     text-align: center;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 2.5rem;
     color: #ffffff;
     padding-top:10px;
     padding-bottom:10px;
-    font-size: 16px;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 }
 
 /* textarea hint */
 ::placeholder {
   color: #ACC1B9;
-  font-size: 18px;
+  font-size: 1.8rem;
 }
 :-ms-input-placeholder { /* Internet Explorer 10-11 */
   color: #acc189;
-  font-size: 18px;
+  font-size: 1.8rem;
 }
 ::-ms-input-placeholder { /* Microsoft Edge */
   color: #acc189;
-  font-size: 18px;
+  font-size: 1.8rem;
 }
 
 

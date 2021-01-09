@@ -38,7 +38,7 @@
             {{ building_index | stringformat:"02d" }}
             {{ building_name }}
         </div>
-        <div style="font-size: 2.4em; margin-left: 24px; color: #000000;">{{floor}}호</div>
+        <div style="font-size: 3.3rem; margin-left: 3rem; color: #000000;">{{floor}}호</div>
     </div>
     <div class="contents">
         <div >
@@ -133,7 +133,7 @@
     <div class="reservation_wrapper">
         {% if reservationList|length == 0 %}
             <div class="bg_notUse_wrapper">
-                <img src="{% static 'img/kuing_mark.png' %}">
+                <img class="ic_kuing_img" src="{% static 'img/kuing_mark.png' %}">
                 <div class="bg_notUse_word"><br>현재 사용중인 학우가 없습니다.</div>
             </div>
         {% else %}

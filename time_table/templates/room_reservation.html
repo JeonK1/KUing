@@ -16,11 +16,11 @@
     </script>
     <div class="wrapper">
         <div class="header">
-                <div class="header_title">
-                    {{ building_index | stringformat:"02d" }}
-                    {{ building_name }}
-                </div>
-                <div style="font-size: 2.4em; color: #000000;">{{ floor }}호</div>
+            <div class="header_title">
+                {{ building_index | stringformat:"02d" }}
+                {{ building_name }}
+            </div>
+            <div style="font-size: 3.3rem; margin-left: 3rem; color: #000000;">{{floor}}호</div>
         </div>
         <div class="container_reserve_wrapper" id="container_reserve_wrapper">
             <div style="align-items: stretch;">
@@ -62,9 +62,9 @@
                             <option value="40">40 분</option>
                             <option value="50">50 분</option>
                         </select>
-                        <div class="reserve_container_context">사용 시작</div>
-                     </div>
-                    {% comment %} <div class="reserve_container_timewrap">
+                        <div class="reserve_container_context" id="context_start_msg">사용 시작</div>
+                    </div>
+                    <div class="reserve_container_timewrap">
                         <div class="reserve_container_context">
                             +01 시
                         </div>
@@ -72,8 +72,8 @@
                             00 분
                         </div>
                         <div class="reserve_container_context">사용 종료</div>
-                     </div> {% endcomment %}
-                    <div class="reserve_container_comment">기본 사용시간은 고정 60분입니다.</div>
+                    </div>
+                    <div class="reserve_container_comment">사용시간은 고정 60분입니다.</div>
                     <br><br>
                     <div class="reserve_useBtn_wrapper" onclick="">
                         <input class="reserve_useBtn" type="submit" value="확인" />
