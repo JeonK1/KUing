@@ -15,6 +15,7 @@ input::placeholder {
 }
 .ic_kuing{
     position:absolute;
+    height: 38px;
     left:0;
     margin: 10px 0px 0px 30px;
 }
@@ -33,7 +34,6 @@ input::placeholder {
 .class_grid{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 20px;
 }
 .building_desc{
     position:static;
