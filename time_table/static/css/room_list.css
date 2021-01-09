@@ -1,6 +1,6 @@
 .container{
     position:static;
-    padding: 40px 20px 0px 20px;
+    padding: 15px 20px 0px 20px;
 }
 .header{
     position:static;
@@ -10,8 +10,8 @@
 .header_title{
     position:absolute;
     left:0;
-    padding-left: 30px;
-    font-size: 2.6em;
+    padding-left: 3.5rem;
+    font-size: 3.5rem;
     font-weight: bold;
 }
 .header_option{
@@ -27,79 +27,75 @@
     padding:5px 15px 5px 15px;
 }
 .menu_bar{
-    margin-top: 3.0em;
+    margin: 0rem 3rem 0rem 3rem;
+    margin-top: 5.0em;
     display: grid;
     grid-template-columns: 1.1fr 1fr 1fr;
 }
 .menu_item{
     float: left;
     font-weight: bold;
-    font-size: 2.0em;
+    font-size: 2.8rem;
     border-radius: 2.0em;
-    height: 3.4em;
-    line-height: 3.4em;
     background: #34F0A2;
     margin-top: 30px;
-    padding:5px 15px 5px 15px;
+    padding:10px 0px 10px 0px;
     text-align: center;
 }
 .menu_item_off{
     float: left;
-    font-size: 2.0em;
+    font-size: 2.8rem;
     border-radius: 2.0em;
-    height: 3.4em;
-    line-height: 3.4em;
     font-weight: bold;
     color: #ACC1B9;
     margin-top: 30px;
-    padding:5px 15px 5px 15px;
+    padding:10px 1rem 10px 1rem;
     text-align: center;
 }
 .contents{
     position:static;
-    margin-top: 5em;
+    margin: 5rem 1rem 0rem 1rem;
+    padding: 0rem 1rem 0rem 1rem;
 }
 .room_container{
     position:static;
     display: grid;
-    height: 4.5em;
-    line-height: 4.5em;
     grid-template-columns: 0.7fr 1.3fr 1fr;
     border: 2px solid #f0f0f0;
-    border-radius: 50px;
+    border-radius: 100px;
     text-align: center;
-    margin-top : 2em;
-    padding: 10px 0px 10px 5px;
+    align-items: center;
+    justify-items: center;
+    margin-top : 1em;
+    padding: 30px 0px 30px 5px;
 }
 .room_item_name{
-    font-size: 1.8em;
+    font-size: 2.5rem;
     font-weight: bold;
 }
 .room_item_time{
-    font-size: 1.8em;
+    font-size: 2.5rem;
 }
 .room_item_status_use{
-    width: fit-content;
+    width: 12rem;
     justify-self: right;
-    padding-left: 1.8em;
-    padding-right: 1.8em;
-    font-size: 1.8em;
+    font-size: 2.5rem;
     font-weight: bold;
     color: #ffffff;
     background: #ACC1B9;
     border-radius: 2.25em;
+    padding: 10px 0.5em 15px 0.5em;
     margin:0px 10px 0px 10px;
 }
 .room_item_status_unuse{
-    width: fit-content;
+    width: 12rem;
     justify-self: right;
-    padding-left: 1.8em;
-    padding-right: 1.8em;
-    font-size: 1.8em;
+    font-size: 2.5rem;
     font-weight: bold;
     color: #ffffff;
     background: #34F0A2;
     border-radius: 2.25em;
+    padding: 10px 0.5em 15px 0.5em;
     margin:0px 10px 0px 10px;
 }
 .room_item_status_no{
