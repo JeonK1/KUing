@@ -36,10 +36,11 @@ a:hover {
 .header{
     flex: 0 0 100%; 
     margin-top: 34px;
-    margin-bottom: 10px;
+    margin-bottom: 1.1em;
+    margin-top: 3em;
 }
 .header_title{
-    font-size: 26px;
+    font-size: 2.6em;
     font-weight: bold;
     margin-bottom: 23px;
     margin-left: 24px;
@@ -63,7 +64,7 @@ a:hover {
     margin: 0px 23px 0px 24px;
     background: #FFFFFF;
     box-shadow: 0px 3px 17px -1px rgba(0, 0, 0, 0.15);
-    border-radius: 53px;
+    border-radius: 5.3em;
 }
 .collapse {
     margin-top: 30px;
@@ -208,13 +209,13 @@ a:hover {
 }
 .class_info_title{
     font-weight: bold;
-    font-size: 20px;
+    font-size: 2em;
     text-align: center;
     color: #34F0A2;
 }
 .class_info_time{
     font-weight: bold;
-    font-size: 18px;
+    font-size: 1.8em;
     text-align: center;
     color: #000000;
 }
@@ -225,14 +226,15 @@ a:hover {
     margin-bottom : 12px;
 }
 .class_info_moreBtn{
-    width:115px;
+    width: 11.5em;
+    line-height: 2em;
+    height: 2.9em;
     background-color: #34F0A2;
-    border-radius: 21px;
+    border-radius: 2.1em;
     text-align: center;
     font-weight: bold;
-    font-size: 18px;
     color: #ffffff;
-    font-size: 16px;
+    font-size: 1.6em;
     padding-top: 5px;
     padding-bottom: 5px;
     margin-bottom : 12px;

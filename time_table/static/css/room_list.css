@@ -4,7 +4,8 @@
 }
 .header{
     position:static;
-    padding-bottom: 30px
+    padding-bottom: 30px;
+    margin-top: 3.4em;
 }
 .header_title{
     position:absolute;

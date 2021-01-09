@@ -10,11 +10,9 @@ input::placeholder {
 
 .header_wrapper{
     position:static;
-    background:black;
     width:100%;
 }
 .ic_kuing{
-    position:absolute;
     height: 38px;
     left:0;
     margin: 10px 0px 0px 30px;
