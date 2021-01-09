@@ -99,7 +99,6 @@
                                 {% for row in time_table_arr %}
                                 <td class="table_td_column">
                                     {% for cell in row %}
-                                    {% comment %} <div> {% endcomment %}
                                         <div class="cols" style="position: absolute;">
                                             {% if cell.is_using == 1 and cell.length == 1 %}
                                                 <div class="time_with_lecture" >{{cell.title}}</div>
@@ -115,13 +114,11 @@
                                                 <div class="time_with_lecture6">{{cell.title}}</div>
                                             {% endif %}
                                         </div>
-                                        {% comment %} <div class="grids"> {% endcomment %}
-                                            {% if cell.is_using == 1 %}
-                                                <div class="time_without_lecture" style="border-radius: 12px;"></div>
-                                            {% else %}
-                                                <div class="time_without_lecture"></div>
-                                            {% endif %}
-                                        {% comment %} </div> {% endcomment %}
+                                        {% if cell.is_using == 1 %}
+                                            <div class="time_without_lecture" style="border-radius: 12px;"></div>
+                                        {% else %}
+                                            <div class="time_without_lecture"></div>
+                                        {% endif %}
                                     {% endfor %}
                                 </td>
                                 {% endfor %}
