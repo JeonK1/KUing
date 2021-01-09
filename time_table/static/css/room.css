@@ -106,85 +106,91 @@ a:hover {
     text-align: center;
     /* width: 60px; */
     z-index: 10;
-    width: 12.8em;
+    width: 8em;
     height: 37px;
-    font-size: 10px;
+    font-size: 1em;
     background-color: #ACC1B9;
     border: 1px #ACC1B9 solid;
+    overflow: hidden;
 }
 .time_with_lecture2{
     position: absolute;
     padding-top: 6px;
     text-align: center;
     top: -1px;
-    width: 12.8em;
+    width: 8em;
     z-index: 10;
     height: 74px;
-    font-size: 10px;
+    font-size: 1em;
     background-color: #9AFFD5;
     border-radius: 12px;
     border: 1px #51836F solid;
+    overflow: hidden;
 }
 .time_with_lecture3{
     position: absolute;
     padding-top: 6px;
     text-align: center;
     top: -1px;
-    width: 12.8em;
+    width: 8em;
     z-index: 10;
-    height: 113px;
-    font-size: 10px;
+    height: 7.3em;
+    font-size: 1em;
     margin-top: 1px;
     color: #51836F;
     background-color: #9AFFD5;
     border-radius: 12px;
     border: 1px #51836F solid;
+    overflow: hidden;
 }
 .time_with_lecture4{
     position: absolute;
     padding-top: 6px;
     text-align: center;
     top: -1px;
-    width: 12.8em;
+    width: 8em;
     z-index: 10;
     height: 155px;
-    font-size: 10px;
+    font-size: 1em;
     margin-top: 1px;
     color: #51836F;
     background-color: #9AFFD5;
     border-radius: 12px;
     border: 1px #51836F solid;
+    overflow: hidden;
 }
 .time_with_lecture5{
     position: absolute;
     padding-top: 6px;
     text-align: center;
     top: -1px;
-    width: 12.8em;
+    width: 8em;
     z-index: 10;
     height: 195px;
 
-    font-size: 10px;
+    font-size: 1em;
     margin-top: 1px;
     color: #51836F;
     background-color: #9AFFD5;
     border-radius: 12px;
     border: 1px #51836F solid;
+    overflow: hidden;
 }
 .time_with_lecture6{
     position: absolute;
     padding-top: 6px;
     text-align: center;
     top: -1px;
-    width: 12.8em;
+    width: 8em;
     z-index: 10;
     height: 195px;
-    font-size: 10px;
+    font-size: 1em;
     margin-top: 1px;
     color: #51836F;
     background-color: #9AFFD5;
     border-radius: 12px;
     border: 1px #51836F solid;
+    overflow: hidden;
 }
 .time_without_lecture{
     /* width: 61px; */
