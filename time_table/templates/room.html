@@ -160,7 +160,7 @@
         </div>
     {% else %}
         <!-- 수업 중이 아님 -->
-        <div class="comment_wrapper"> 사용 여부를 표시해주세요 </div>
+        <div class="comment_wrapper"  style="background-image: url('{% static 'img/bg_comment_box.png' %}');"> 사용 여부를 표시해주세요 </div>
         <div class="useBtn_wrapper_abs">
             <div class="useBtn"><a href={% url 'reservation' building_index=building_index floor=floor %}>사용 표시하기</div>
         </div>

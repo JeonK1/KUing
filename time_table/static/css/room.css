@@ -284,7 +284,7 @@ a:hover {
     bottom:90px;
     transform:translate(-50%, 0%);
 
-    background-image: url("http://localhost:8000/static/img/bg_comment_box.png");
+/*    background-image: url("http://localhost:8000/static/img/bg_comment_box.png"); */
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
