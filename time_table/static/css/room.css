@@ -84,29 +84,44 @@ a:hover {
     box-shadow: 0px 3px 17px -1px rgba(0, 0, 0, 0.15);
     border-radius: 53px;
 }
+.collapse {
+    margin-top: 30px;
+}
 .table_wrapper{
     /* 처음에는 none 상태고, 더보기를 누를때 flex로 변경됨 */
     /* display: flex; */
     display: none;
     justify-content: center;
 }
+.table_header {
+    position: absolute;
+    margin-top: -11px;
+    z-index: 10;
+}
+.table_time_column {
+    position: relative;
+    padding-top: 5px;
+}
+.table_td_column {
+    display: inline-block;
+    margin-top: 5px;
+}
 .time_counter{
-    width: 38px;
-    height: 79px;
+    width: 38.4px;
+    height: 78.2px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: NanumGothic;
     font-size: 9px;
     color: #353F3B;
-    margin-bottom: 1px;
-    border: 0.5px #ACC1B9 solid;
+    border: 2px #ACC1B9 solid;
 }
 .time_with_lecture{
     position: absolute;
     padding-top: 6px;
     text-align: center;
-    width: 60px;
+    /* width: 60px; */
     z-index: 10;
     width: 59px;
     height: 37px;
@@ -190,20 +205,20 @@ a:hover {
 }
 .time_without_lecture{
     width: 61px;
-    height: 37px;
+    height: 39px;
     text-align: center;
-    /* margin-top: 2px; */
+    margin-top: 0.1px;
     background-color: #ffffff;
     border: 0.1px #353F3B solid;
 }
-.dayOfTheWeek{
+.day_of_the_week{
     font-family: NanumGothic;
     font-size: 9px;
     color: #353F3B;
-    width: 61px;
+    width: 60.8px;
     height: 12px;
     text-align: center;
-    border: 0.1px #353F3B solid;
+    border: 2px #353F3B solid;
 }
 .class_info_header{
     display: grid;

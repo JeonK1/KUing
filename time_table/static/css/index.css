@@ -33,24 +33,30 @@ input::placeholder {
 .class_grid{
     display: grid;
     grid-template-columns: 1fr 1fr;
+    gap: 20px;
 }
 .building_desc{
     position:static;
-    padding: 35px 0px 40px 0px;
-
+    width: 80%;
+    height: 250px;
+    margin: 0 auto;
+    padding: 7em 0px 40px 0px;
     margin-bottom: 30px;
     text-align:center;
     background-image: url("http://localhost:8000/static/img/building_circle.png");
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
 }
 .building_num{
+    
     color: #34F0A2;
-    font-size: 35px;
+    /* font-size: 35px; */
+    font-size: 3rem;
     font-weight: bold;
 }
 .building_name{
-    font-size: 15px;
+    font-size: 2rem;
 }
 
 /* 스크롤바 제거 */
