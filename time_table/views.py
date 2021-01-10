@@ -18,7 +18,6 @@ BUILDINGS = [
     ('교육과학관', '사'), ('예술문화관', '예'), ('해봉부동산학관', '부'), ('건축관', '건'), ('인문학관', '문'),
     ('창의관', '창'), ('과학관', '이'), ('공학관 A', '공A'), ('공학관 B', '공B'), ('공학관 C', '공C')]
 
-
 def index(request):
     buildingList = []
     for i in range(1, len(BUILDINGS)):
@@ -331,7 +330,7 @@ class Room(ListView):
         floorInfo = []
         for curFloor in floors:
             curRoomNum = curFloor[0] # 방 번호
-            if(int(curRoomNum) == int(floor)):
+            if(str(curRoomNum) == str(floor)):
                 floorInfo.append(curFloor) # 현재 선택한 방 정보를 floorInfo로 전송
 
         # 남은시간 추출
