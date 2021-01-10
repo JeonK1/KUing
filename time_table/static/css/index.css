@@ -41,7 +41,7 @@ input::placeholder {
     padding: 7em 0px 5em 0px;
     text-align:center;
 /*    background-image: url("http://localhost:8000/static/img/building_circle.png"); */
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
 }
