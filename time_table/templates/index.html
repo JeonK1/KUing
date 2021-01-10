@@ -5,7 +5,7 @@
     <div class="building_container">
         <div class="class_grid">
             {% for building in buildings %}
-                <div class="building_desc" style="background-image: url('{% static 'img/building_circle.png' %}');" onclick="location.href='{{request.get_full_path}}room_list/{{building.number}}'">
+                <div class="building_desc" style="background-image: url('{% static 'img/building_circle.png' %}');" onclick="location.href='{{request.get_full_path}}room_list/{{building.index}}'">
                     <span class="building_num">{{building.number}}</span>
                     <br>
                     <span class="building_name">{{building.name}}</span>
