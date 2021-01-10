@@ -96,7 +96,7 @@ a:hover {
     align-items: center;
     justify-content: center;
     font-family: NanumGothic;
-    font-size: 9px;
+    font-size: 1rem;
     color: #353F3B;
     border: 1px #000000 solid;
 }
