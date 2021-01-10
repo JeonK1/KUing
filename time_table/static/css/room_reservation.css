@@ -157,7 +157,7 @@
     width:100%;
     background-color: #ACC1B9;
     border-radius: 40px;
-    border-color: white;
+    border: none;
     text-align: center;
     font-weight: bold;
     font-size: 2.5rem;

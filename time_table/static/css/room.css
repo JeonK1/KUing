@@ -41,7 +41,7 @@ a:hover {
 }
 .header_title{
     font-size: 3.5rem;
-    margin-left: 3.5rem;
+    margin-left: 3rem;
     font-weight: bold;
     margin-bottom: 23px;
 }
@@ -98,7 +98,7 @@ a:hover {
     font-family: NanumGothic;
     font-size: 9px;
     color: #353F3B;
-    border: 2px #ACC1B9 solid;
+    border: 1px #000000 solid;
 }
 .time_with_lecture{
     position: absolute;
