@@ -352,6 +352,9 @@ a:hover {
     margin: 0px 15rem 40px 15rem;
 }
 /* 사용표시된 내용 관련 */
+.reservation_wrapper {
+    margin-bottom: 20%;
+}
 .bg_reservation_wrapper{
     display:flex;
     flex-direction: column;
