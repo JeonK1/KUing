@@ -367,6 +367,7 @@ class RoomReservation(ListView):
         floor = self.kwargs['floor']
         building_index = self.kwargs['building_index']
         context['floor'] = floor
+        context['building_number'] = '%02d' % int(BUILDINGS[building_index][2])
         context['building_index'] = building_index
         context['building_name'] = BUILDINGS[building_index][0]
         return context
