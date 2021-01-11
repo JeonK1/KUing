@@ -11,6 +11,7 @@
             if(IS_MORE_CLICK){
                 // 더보기버튼 ON >> OFF
                 IS_MORE_CLICK = false;
+                document.getElementsByClassName('class_info_moreBtn_img')[0].style.transform = "rotate(0deg)" // 이미지 돌리기
                 document.getElementsByClassName('table_wrapper')[0].style.display="none";
                 document.getElementsByClassName('table_wrapper')[1].style.display="none";
                 document.getElementsByClassName('empty_padding')[0].style.display="flex";
@@ -22,6 +23,7 @@
             } else {
                 // 더보기버튼 OFF >> ON
                 IS_MORE_CLICK = true;
+                document.getElementsByClassName('class_info_moreBtn_img')[0].style.transform = "rotate(180deg)"  // 이미지 돌리기
                 document.getElementsByClassName('table_wrapper')[0].style.display="flex";
                 document.getElementsByClassName('table_wrapper')[1].style.display="flex";
                 document.getElementsByClassName('empty_padding')[0].style.display="none";
@@ -35,7 +37,7 @@
     </script>
     <div class="header">
         <div class="header_title">
-            {{ building_index | stringformat:"02d" }}
+            {{ building_number }}
             {{ building_name }}
         </div>
         <div style="font-size: 2.7rem; margin-left: 3rem; color: #000000;">{{floor}}호</div>
@@ -62,10 +64,6 @@
                 {% endif %}
             </div>
             <div class="class_info_btnWrapper">
-                <div class="btn class_info_moreBtn" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" onclick="moreBtnClick();">
-                    더보기
-                    <img class="class_info_moreBtn_img" src="{% static 'img/ic_downBtn.png' %}">
-                </div>
                 <div class="collapse" id="collapseExample">
                 <div >
                     <div class="table_header">
@@ -126,6 +124,10 @@
                         </table>
                     </div>
                 </div>
+            </div>
+            <div class="btn class_info_moreBtn" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" onclick="moreBtnClick();">
+                더보기
+                <img class="class_info_moreBtn_img" src="{% static 'img/ic_downBtn.png' %}">
             </div>
         </div>
     </div>

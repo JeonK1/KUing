@@ -250,6 +250,7 @@ class Room(ListView):
         context['time_table_arr'] = time_table_arr
         context['building_index'] = self.kwargs['building_index']
         context['building_name'] = BUILDINGS[building_index][0]
+        context['building_number'] = '%02d' % int(BUILDINGS[building_index][2])
         context['range_5'] = range(5)
         context['range_24'] = range(24)
 

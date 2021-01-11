@@ -279,8 +279,8 @@ a:hover {
 }
 .comment_wrapper{
     position: fixed;
-    width: 350px;
-    height: 100px;
+    width: 450px;
+    height: 140px;
     left:50%;
     bottom:90px;
     transform:translate(-50%, 0%);
@@ -293,14 +293,14 @@ a:hover {
     font-family: NanumGothic;
     font-style: normal;
     font-weight: normal;
-    font-size: 1.5rem;
+    font-size: 2rem;
 
     display: flex;
     justify-content : center;
     align-items: center;
     text-align: center;
-    padding-bottom: 10px;
-    margin-bottom: 45px;
+    padding-bottom: 30px;
+    margin-bottom: 60px;
 
     color: #000000;
     z-index:16;
@@ -334,33 +334,29 @@ a:hover {
     bottom: 0;
     width: 100%;
     background-color: #34F0A2;
-    border-radius: 2rem;
+    border-radius: 3rem;
     text-align: center;
     font-weight: bold;
-    font-size: 18px;
     color: #ffffff;
-    font-size: 2rem;
+    font-size: 2.8rem;
     padding: 10px 0px 10px 0px;
-    margin: 0px 15rem 40px 15rem;
+    margin: 0px 10rem 40px 10rem;
 }
 .useBtn_blocked{
     position: relative;
     bottom: 0;
     width: 100%;
     background-color: #ACC1B9;
-    border-radius: 2rem;
+    border-radius: 3rem;
     text-align: center;
     font-weight: bold;
     font-size: 18px;
     color: #ffffff;
-    font-size: 2rem;
+    font-size: 2.8rem;
     padding: 10px 0px 10px 0px;
-    margin: 0px 15rem 40px 15rem;
+    margin: 0px 10rem 40px 10rem;
 }
 /* 사용표시된 내용 관련 */
-.reservation_wrapper {
-    margin-bottom: 20%;
-}
 .bg_reservation_wrapper{
     display:flex;
     flex-direction: column;
@@ -423,7 +419,7 @@ a:hover {
 .empty_padding{
     display:flex;
     width:100%;
-    height:2em;
+    height:30rem;
 }
 
 /* 스크롤바 제거 */

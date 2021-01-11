@@ -38,15 +38,19 @@ def getClassName(building_index, floorInfo):
             start_time_hour = now_time_hour
             start_time_min = now_time_min
 
+            print(start_time_hour)
+
             start_time = 1 + (start_time_hour-9) * 2
             # 분은 내림으로 계산하여, 30~60분일때 1증가 시켜주기
             if(start_time_min > 30 and start_time_min < 60):
                 start_time+=1
 
+            print(start_time)
+
             curStartTime = "{:02d}".format(int(start_time))
             curFloor = "{:02d}".format(int(floorInfo[0]))
-            res = LectureTime.objects.filter(start_time__lt=curStartTime,
-                                             end_time__gt=curStartTime,
+            res = LectureTime.objects.filter(start_time__lte=curStartTime,
+                                             end_time__gte=curStartTime,
                                              day_of_the_week=now_day_of_week,
                                               floor=curFloor,
                                               lecture_id__building = BUILDINGS[building_index][1])
