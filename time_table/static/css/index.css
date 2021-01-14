@@ -7,14 +7,15 @@ input::placeholder {
     font-family: 'Nanum Gothic Bold';
     font-size: 12px;
 }
-
+.loading_page{
+    display:none;
+}
 .header_wrapper{
     position:static;
     width:100%;
 }
 .ic_kuing{
     height: 3rem;
-    left:0;
     margin: 3rem 0px 0px 3rem;
 }
 .ic_mypage{

@@ -11,9 +11,26 @@
             location.href = 'http://'+location.host;
         }
     </script>
-    <div class="header_wrapper">
-        <img class='ic_kuing' src="{% static 'img/ic_kuing.png' %}" onclick="homeBtnClick();">
+    <div class="loading_page" style="background-image: url('{% static 'img/bg_loading.png' %}');
+        width:100%;
+        height:100%;
+        position:absolute;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;" >
+        <div style="background-image: url('{% static 'img/kuing_loading.png' %}');
+            display:flex;
+            width:100%;
+            height:100%;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;" >
+        </div>
     </div>
+    <div class="header_wrapper">
+        <img class='ic_kuing' style="height: 3rem; margin: 3rem 0px 0px 3rem;" src="{% static 'img/ic_kuing.png' %}" onclick="homeBtnClick();">
+    </div>
+
     <div >
         {% block content %}
         {% endblock %}
