@@ -70,10 +70,12 @@
     padding: 0.9em 1.1em 0.9em 0;
 }
 .room_item_name{
+    width:100%;
     font-size: 2.5rem;
     font-weight: bold;
 }
 .room_item_time{
+    width:100%;
     font-size: 2.5rem;
 }
 .room_item_status_use{

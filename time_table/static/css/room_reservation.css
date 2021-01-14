@@ -23,7 +23,7 @@
 }
 .header_title{
     font-size: 3.5rem;
-    margin-left: 3.5rem;
+    margin-left: 3rem;
     font-weight: bold;
     margin-bottom: 31px;
 }
@@ -87,7 +87,7 @@
 .reserve_header_title{
     color: #000000;
     font-weight: bold;
-    font-size: 2.5rem;
+    font-size: 3.0rem;
 }
 .reserve_header_context{
     color: #000000;
@@ -96,24 +96,31 @@
 #context_start_msg{
     margin-top: 3.5rem;
 }
+.reserve_container_context2{
+    color: #000000;
+    font-size: 2.0rem;
+    text-align: center;
+    margin-top: 2rem;
+}
 .reserve_container_context{
     color: #000000;
-    font-size: 2rem;
+    font-size: 1.3rem;
     text-align: center;
     margin-top: 2rem;
 }
 .reserve_container_comment{
     color: #000000;
-    font-size: 1.4em;
+    font-size: 1.2rem;
     text-align: center;
-    margin-top:40px;
+    margin-top:15px;
     margin-bottom:20px;
 }
-
+#editbox_nickname{
+    margin-bottom:56px;
+}
 .reserve_container_editbox_wrap{
     display:flex;
     justify-content : center;
-    margin-bottom:56px;
 }
 .reserve_container_editbox{
     width:100%;
@@ -129,15 +136,16 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     color: #000000;
-    font-size: 1.3rem;
-    margin-bottom:0px;
 }
 .reserve_input_form{
     margin-top:10px;
 }
+#reserve_time_end{
+    margin-bottom:3rem;
+}
 .reserve_container_select{
     color: #000000;
-    font-size: 1.5em;
+    font-size: 2.0rem;
     -webkit-appearance:none;
     -moz-appearance:none;
     border-radius: 1.8em;

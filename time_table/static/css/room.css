@@ -240,20 +240,24 @@ a:hover {
     margin-bottom : 12px;
 }
 .class_info_moreBtn{
+    width:16rem;
+    display: flex;
+    flex-direction: row;
+    justify-content : center;
+    align-items: center;
     background-color: #34F0A2;
     border-radius: 2.1rem;
     text-align: center;
     font-weight: bold;
     color: #ffffff;
     font-size: 2rem;
-    padding: 10px 60px 10px 60px;
-    margin: 0px 10px 12px 10px;
+    padding: 10px 0px 10px 0px;
+    margin: 0px 0px 12px 0px;
 }
 .class_info_moreBtn_img{
     width:20px;
     height:10px;
-    margin-left : 5px;
-    margin-bottom: 10px;
+    margin-left : 15px;
 }
 .class_info_btnWrapper{
     display: flex;

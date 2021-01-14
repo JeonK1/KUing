@@ -11,7 +11,9 @@
             if(IS_MORE_CLICK){
                 // 더보기버튼 ON >> OFF
                 IS_MORE_CLICK = false;
-                document.getElementsByClassName('class_info_moreBtn_img')[0].style.transform = "rotate(0deg)" // 이미지 돌리기
+                document.getElementsByClassName('class_info_moreBtn')[0].style.backgroundColor="#34F0A2";
+                document.getElementsByClassName('class_info_moreBtn_text')[0].innerText = "더보기 ";
+                document.getElementsByClassName('class_info_moreBtn_img')[0].style.transform = "rotate(0deg)"; // 이미지 돌리기
                 document.getElementsByClassName('table_wrapper')[0].style.display="none";
                 document.getElementsByClassName('table_wrapper')[1].style.display="none";
                 document.getElementsByClassName('empty_padding')[0].style.display="flex";
@@ -23,7 +25,9 @@
             } else {
                 // 더보기버튼 OFF >> ON
                 IS_MORE_CLICK = true;
-                document.getElementsByClassName('class_info_moreBtn_img')[0].style.transform = "rotate(180deg)"  // 이미지 돌리기
+                document.getElementsByClassName('class_info_moreBtn')[0].style.backgroundColor="#ACC1B9";
+                document.getElementsByClassName('class_info_moreBtn_text')[0].innerText = "닫기 ";
+                document.getElementsByClassName('class_info_moreBtn_img')[0].style.transform = "rotate(180deg)";  // 이미지 돌리기
                 document.getElementsByClassName('table_wrapper')[0].style.display="flex";
                 document.getElementsByClassName('table_wrapper')[1].style.display="flex";
                 document.getElementsByClassName('empty_padding')[0].style.display="none";
@@ -40,7 +44,7 @@
             {{ building_number }}
             {{ building_name }}
         </div>
-        <div style="font-size: 2.7rem; margin-left: 3rem; color: #000000;">{{floor}}호</div>
+        <div style="font-size: 3.3rem; margin-left: 3rem; color: #000000;">{{floor}}호</div>
     </div>
     <div class="contents">
         <div >
@@ -126,7 +130,7 @@
                 </div>
             </div>
             <div class="btn class_info_moreBtn" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" onclick="moreBtnClick();">
-                더보기
+                <div class="class_info_moreBtn_text">더보기</div>
                 <img class="class_info_moreBtn_img" src="{% static 'img/ic_downBtn.png' %}">
             </div>
         </div>
