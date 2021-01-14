@@ -29,15 +29,15 @@
                     <div class="reserve_header_title">닉네임</div>
                     <div class="reserve_header_context">사용 표시를 등록할 닉네임을 설정해주세요</div>
                     <div class="reserve_container_editbox_wrap" id="editbox_nickname">
-                        <textarea name="username" maxlength="5" class="reserve_container_editbox" placeholder="한글,영문 5자 이내"></textarea>
+                        <textarea rows="1" name="username" maxlength="5" class="reserve_container_editbox" placeholder="한글,영문 5자 이내"></textarea>
                     </div>
                     <div class="reserve_header_title">목적</div>
                     <div class="reserve_header_context">강의실 사용 목적과 요청사항을 알려주세요</div>
                     <div class="reserve_container_editbox_wrap">
-                        <textarea name="description" class="reserve_container_editbox" placeholder="예시)영상촬영중입니다. 출입을 자제해주세요"></textarea>
+                        <textarea rows="3" name="description" class="reserve_container_editbox" placeholder="예시)영상촬영중입니다. 출입을 자제해주세요"></textarea>
                     </div>
                     <div class="reserve_container_comment">비방/욕설 글 작성 시 앱 사용이 제한됩니다</div>
-                    <div class="reserve_header_title">사용 시간</div>
+                    <div class="reserve_header_title" id="reserve_time">사용 시간</div>
                     <div class="reserve_container_timewrap">
                         <select name="start_time_hour" class="reserve_container_select" id="start_time_hour" style="background: url({% static 'img/ic_downBtn2.png' %}) no-repeat 85% 50%;">
                             <option value="8">08 시</option>
@@ -71,7 +71,7 @@
                         <div class="reserve_container_context">사용 종료</div>
                     </div>
                     <div class="reserve_container_comment">사용시간은 고정 60분입니다.</div>
-                    <br><br>
+                    <br>
                     <div class="reserve_useBtn_wrapper" onclick="">
                         <input class="reserve_useBtn" type="submit" value="확인" />
                     </div>

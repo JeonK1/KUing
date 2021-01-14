@@ -365,12 +365,12 @@ a:hover {
     display:flex;
     flex-direction: column;
 
-    padding: 35px 50px 29px 50px;
+    padding: 3rem 5rem 3rem 5rem;
     margin: 0px 38px 20px 40px;
 
-    border: 5px solid #9AF8D1;
+    border: 0.8rem solid #9AF8D1;
     box-sizing: border-box;
-    border-radius: 5.3em;
+    border-radius: 7rem;
 }
 .reservation_info_wrapper{
     display:flex;
@@ -380,16 +380,16 @@ a:hover {
 .reservation_comment_wrapper{
     display:flex;
     align-items: center;
-    margin-top: 19px;
-    padding: 8px 35px 7px 36px;
+    margin-top: 2rem;
+    padding: 1rem 3rem 1rem 3rem;
 
     background: #9AF8D1;
-    border-radius: 4rem;
+    border-radius: 3rem;
 
     font-family: Comfortaa;
     font-style: normal;
     font-weight: normal;
-    font-size: 1.8rem;
+    font-size: 2.5rem;
     color: #000000;
 }
 .reservation_name{
@@ -399,7 +399,7 @@ a:hover {
     font-family: NanumGothic;
     font-style: normal;
     font-weight: bold;
-    font-size: 2rem;
+    font-size: 2.8rem;
 
     color: #000000;
 }
@@ -414,7 +414,7 @@ a:hover {
     font-family: NanumGothic;
     font-style: normal;
     font-weight: normal;
-    font-size: 1.8em;
+    font-size: 2.3rem;
     color: #000000;
 }
 #reservation_time_end{

@@ -84,33 +84,40 @@
 .container_reserve_wrapper_none{
     display: none;
 }
+#reserve_time{
+    padding-top:3rem;
+}
 .reserve_header_title{
     color: #000000;
     font-weight: bold;
-    font-size: 3.0rem;
+    font-size: 2.7rem;
 }
 .reserve_header_context{
+    width:100%;
     color: #000000;
-    font-size: 1.5rem;
+    font-size: 2.0rem;
 }
 #context_start_msg{
     margin-top: 3.5rem;
 }
 .reserve_container_context2{
+    width:100%;
     color: #000000;
     font-size: 2.0rem;
     text-align: center;
     margin-top: 2rem;
 }
 .reserve_container_context{
+    width:100%;
     color: #000000;
-    font-size: 1.3rem;
+    font-size: 2.0rem;
     text-align: center;
     margin-top: 2rem;
 }
 .reserve_container_comment{
+    width:100%;
     color: #000000;
-    font-size: 1.2rem;
+    font-size: 1.8rem;
     text-align: center;
     margin-top:15px;
     margin-bottom:20px;
@@ -127,9 +134,9 @@
     border-radius: 1.8em;
     border:solid 1px black;
     color: #000000;
-    font-size: 1.8rem;
+    font-size: 2rem;
     margin-top: 1.5rem;
-    padding: 1.5rem 2rem 0.5rem 2rem;
+    padding: 1.5rem 2rem 1.5rem 2rem;
     resize: none;
 }
 .reserve_container_timewrap{
@@ -170,23 +177,23 @@
     font-weight: bold;
     font-size: 2.5rem;
     color: #ffffff;
-    padding-top:10px;
-    padding-bottom:10px;
+    padding-top:1rem;
+    padding-bottom:1rem;
     margin-bottom: 20px;
 }
 
 /* textarea hint */
 ::placeholder {
   color: #ACC1B9;
-  font-size: 1.8rem;
+  font-size: 2.0rem;
 }
 :-ms-input-placeholder { /* Internet Explorer 10-11 */
-  color: #acc189;
-  font-size: 1.8rem;
+  color: #ACC1B9;
+  font-size: 2.0rem;
 }
 ::-ms-input-placeholder { /* Microsoft Edge */
-  color: #acc189;
-  font-size: 1.8rem;
+  color: #ACC1B9;
+  font-size: 2.0rem;
 }
 
 
