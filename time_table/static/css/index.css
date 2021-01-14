@@ -7,9 +7,6 @@ input::placeholder {
     font-family: 'Nanum Gothic Bold';
     font-size: 12px;
 }
-.loading_page{
-    display:none;
-}
 .header_wrapper{
     position:static;
     width:100%;
