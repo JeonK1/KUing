@@ -1,0 +1,71 @@
+* {
+margin: 0;
+padding: 0;
+}
+.ic_kuing{
+    height: 3rem;
+    left:0;
+    margin: 3rem 0px 0px 3rem;
+}
+.wrapper{
+    padding:4rem 3rem 0rem 3rem;
+    margin-bottom:20rem;
+}
+.context_title{
+    font-family: NanumGothic;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 3.5rem;
+    /* identical to box height */
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #000000;
+}
+.context_wrapper{
+    display: flex;
+    align-items: center;
+
+    border: 1rem solid #34F0A2;
+    box-sizing: border-box;
+    border-radius: 8rem;
+
+    padding: 4.5rem 2rem 4.5rem 2rem;
+    margin-top: 3rem;
+}
+.wrap_rule{
+    padding-top:5rem;
+}
+.context{
+    font-family: NanumGothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1.5rem;
+
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+}
+.rule_context_wrapper{
+    display: flex;
+    padding: 4.5rem 2rem 4.5rem 2rem;
+}
+.rule_context{
+    font-family: NanumGothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1.5rem;
+
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+}
+
+
+/* 스크롤바 제거 */
+body{ -ms-overflow-style: none; }
+::-webkit-scrollbar { display: none; }

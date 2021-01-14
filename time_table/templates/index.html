@@ -11,6 +11,9 @@
                     <span class="building_name">{{building.name}}</span>
                 </div>
             {% endfor %}
+            <div class="building_desc" style="background-image: url('{% static 'img/building_circle_green.png' %}');" onclick="location.href='{{request.get_full_path}}notice'">
+                <span class="desc_notice_rule">공지 및<br>이용약관</span>
+            </div>
         </div>
     </div>
 {% endblock %}

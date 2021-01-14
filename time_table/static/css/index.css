@@ -45,6 +45,32 @@ input::placeholder {
     background-repeat: no-repeat;
     background-position: center;
 }
+.building_desc_notice{
+    position:static;
+    width: 80%;
+    height: 250px;
+    margin: 0 auto;
+    padding: 7em 0px 5em 0px;
+    text-align:center;
+
+/*    background-image: url("http://localhost:8000/static/img/building_circle.png"); */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.desc_notice_rule{
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    margin: 3rem 0rem 0rem 7rem;
+
+    font-family: NanumGothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 2.5em;
+    color: #000000;
+}
 .building_num{
     color: #34F0A2;
     /* font-size: 35px; */

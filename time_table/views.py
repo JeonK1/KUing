@@ -40,6 +40,27 @@ def delete(request):
 def login(request):
     return render(request, 'login.html')
 
+class Notice(ListView):
+    template_name = "notice.html"
+    model = Lecture
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # # self.kwargs['building_index']를 통해서 url에서 building_index값을 받을 수 있습니다.
+        # building_index = self.kwargs['building_index']
+        # lectures_in_building = Lecture.objects.filter(building=BUILDINGS[building_index][1])
+        # floors = []
+        # for lec in lectures_in_building:
+        #     tmp_floor = lec.lecture_times.get().floor
+        #     if floors.__contains__(tmp_floor):  # 중복검사
+        #         continue
+        #     else:
+        #         floors.append(tmp_floor)
+        # context['building_index'] = building_index
+        # context['building_name'] = BUILDINGS[building_index][0]
+        # context['lectures_in_building'] = lectures_in_building
+        # context['floors'] = floors
+        return context
 
 class RoomFilter(ListView):
     template_name = "room_filter.html"
