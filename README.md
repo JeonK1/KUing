@@ -9,9 +9,8 @@ KUing, 건국대학교 강의실 정보 열람 서비스<br><br>
 <img src="/readme_img/2.png" width=700 />
 <br>
 <br><br>
-<h2>개발환경</h2><br>
+<h2>개발환경</h2>
 - Server : Django + nginx + gunicorn + Amazon EC2 (Ubuntu 18.04 LTS)<br>
 - Frontend : HTML + CSS + JS + bootstrap<br>
 - Database : SQLite3<br>
 - Python library : pandas, numpy (requirements.txt 참조)<br>
-
