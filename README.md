@@ -8,7 +8,6 @@
 <br><br>
 <h2>서비스 소개 및 실행 화면</h2>
 <img src="/readme_img/2.png" width=700 />
-<h3><a href="http://18.218.110.104/">KUing 접속</button><h3><br>
 <h2>개발환경</h2>
 - Server : Django + nginx + gunicorn + Amazon EC2 (Ubuntu 18.04 LTS)<br>
 - Frontend : HTML + CSS + JS + bootstrap<br>
